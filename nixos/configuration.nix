@@ -1,8 +1,14 @@
-{ inputs, config, lib, pkgs, ... }: {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -10,7 +16,7 @@
   boot.initrd.systemd.enable = true;
   boot.consoleLogLevel = 0;
   boot.initrd.verbose = false;
-  boot.kernelParams = [ "quiet" "splash" ];
+  boot.kernelParams = ["quiet" "splash"];
   boot.plymouth.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -56,7 +62,7 @@
   users.users.jonathan = {
     isNormalUser = true;
     description = "Jonathan Watson";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [];
   };
 
@@ -97,7 +103,7 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   security = {
     polkit.enable = true;
@@ -151,7 +157,6 @@
     noto-fonts-emoji
     font-awesome
     liberation_ttf
-    (nerdfonts.override { fonts = [ "SourceCodePro" "FiraCode" "CascadiaCode" ]; })
+    (nerdfonts.override {fonts = ["SourceCodePro" "FiraCode" "CascadiaCode"];})
   ];
-
 }

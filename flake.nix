@@ -13,28 +13,31 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-    let
-      inherit (self) outputs;
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    in
-    {
-      packages = import ./pkgs { inherit pkgs; };
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+  in {
+    packages = import ./pkgs {inherit pkgs;};
 
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./nixos/configuration.nix
-        ];
-        specialArgs = { inherit inputs outputs; };
-      };
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./nixos/configuration.nix
+      ];
+      specialArgs = {inherit inputs outputs;};
+    };
 
-      homeConfigurations = {
-        "jonathan@nixos" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home ];
-        };
+    homeConfigurations = {
+      "jonathan@nixos" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [./home];
       };
     };
+  };
 }

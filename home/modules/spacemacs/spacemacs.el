@@ -47,7 +47,9 @@ values."
      yaml
      vue
      latex
-     nixos
+     (nixos :variables
+            nixos-format-on-save t
+     )
 
      (ivy :variables
           ivy-initial-inputs-alist nil
@@ -467,4 +469,6 @@ you should place your code here."
   (define-key ivy-minibuffer-map (kbd "^") 'ivy-backward-delete-char)
 
   (setq require-final-newline t)
+
+  (setq nix-nixfmt-bin "alejandra-quiet")
   )

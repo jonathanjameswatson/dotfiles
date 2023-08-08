@@ -1,7 +1,5 @@
-{ pkgs ? import <nixpkgs> { } }:
-let
+{pkgs ? import <nixpkgs> {}}: let
   inherit (pkgs) callPackage;
-in
-rec {
-  git-acquire = callPackage ./git-acquire { };
+in rec {
+  git-acquire = callPackage ./git-acquire {};
 }
