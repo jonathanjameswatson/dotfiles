@@ -20,16 +20,12 @@ in {
     kanshi
     waybar
     swaynotificationcenter
-    gnome3.zenity
 
     (
-      pkgs.writeTextFile {
+      pkgs.writeShellApplication {
         name = "nag-graphical";
-        destination = "/bin/nag-graphical";
-        executable = true;
+        runtimeInputs = [gnome3.zenity];
         text = ''
-          #!/usr/bin/env bash
-
           if zenity --question --text="$1"; then
             $2
           fi

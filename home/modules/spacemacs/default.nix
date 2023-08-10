@@ -27,14 +27,11 @@ in {
     (ripgrep.override {withPCRE2 = true;})
     emacs-all-the-icons-fonts
     alejandra
-    (pkgs.writeTextFile {
+    (pkgs.writeShellApplication {
       name = "alejandra-quiet";
-      destination = "/bin/alejandra-quiet";
-      executable = "true";
+      runtimeInputs = [alejandra];
       text = ''
-        #!/usr/bin/env bash
-
-        exec ${pkgs.alejandra}/bin/alejandra -q "''${@}"
+        exec alejandra -q "''${@}"
       '';
     })
   ];
