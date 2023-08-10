@@ -27,6 +27,7 @@ in {
     (ripgrep.override {withPCRE2 = true;})
     emacs-all-the-icons-fonts
     alejandra
+    python3
     (pkgs.writeShellApplication {
       name = "alejandra-quiet";
       runtimeInputs = [alejandra];
