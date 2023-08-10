@@ -36,12 +36,16 @@ in {
     })
   ];
 
-  home.file.".spacemacs".source = ./spacemacs.el;
+  home.file.".spacemacs.d" = {
+    source = ./.spacemacs.d;
+    recursive = true;
+  };
 
   home.activation.install-spacemacs = lib.hm.dag.entryAfter ["installPackages"] ''
     PATH="${pkgs.git}/bin:$PATH" $DRY_RUN_CMD ${outputs.packages.git-acquire}/bin/git-acquire -l ~/.emacs.d -r 4882f70e6541275969b09b52394bb9af563852f4 https://github.com/syl20bnr/spacemacs.git
 
-    touch ~/custom.el
+    mkdir -p ~/.spacemacs.d/
+    touch ~/.spacemacs.d/custom.el
   '';
 
   programs.bash = {
