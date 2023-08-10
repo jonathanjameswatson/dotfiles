@@ -61,7 +61,10 @@ in {
 
   wayland.windowManager.sway = {
     enable = true;
-    wrapperFeatures.gtk = true;
+    wrapperFeatures = {
+      base = true;
+      gtk = true;
+    };
 
     config = rec {
       modifier = "Mod4";
@@ -107,7 +110,17 @@ in {
     };
 
     extraSessionCommands = ''
-      export MOZ_ENABLE_WAYLAND=1
+      export XDG_SESSION_TYPE=wayland
+      export XDG_SESSION_DESKTOP=sway
+      export XDG_CURRENT_DESKTOP=sway
+
+      export MOZ_ENABLE_WAYLAND
+      export NIXOS_OZONE_WL=1
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export SDL_VIDEODRIVER=wayland
+      export _JAVA_AWT_WM_NONREPARENTING=1=1
+
       export GTK_THEME=${gtkThemeVariable}
 
       source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
