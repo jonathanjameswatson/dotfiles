@@ -81,6 +81,7 @@ This function should only modify configuration layer settings."
      ;; lsp
      ;; org
 
+     theming
      treemacs)
 
    ;; List of additional packages that will be installed without being wrapped
@@ -93,7 +94,8 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
-     ssh-agency)
+     ssh-agency
+     catppuccin-theme)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -266,7 +268,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(catppuccin
+                         spacemacs-dark
                          spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -613,4 +616,20 @@ before packages are loaded."
   (setq require-final-newline t)
 
   (setq nix-nixfmt-bin "alejandra-quiet")
+
+  (setq catppuccin-flavor 'macchiato)
+  (setq theming-modifications (let-alist catppuccin-macchiato-colors
+    `((catppuccin
+       (powerline-active1 :background ,.mauve :foreground ,.base)
+       (powerline-active2 :background ,.mauve :foreground ,.base)
+       (powerline-inactive1 :background ,.mantle :foreground ,.text)
+       (powerline-inactive2 :background ,.mantle :foreground ,.text)
+       (spaceline-evil-normal :background ,.blue :foreground ,.mantle)
+       (spaceline-evil-insert :background ,.green :foreground ,.base)
+       (spaceline-evil-visual :background ,.overlay1 :foreground ,.base)
+       (spaceline-evil-replace :background ,.red :foreground ,.base)
+       (spaceline-evil-emacs :background ,.peach :foreground ,.base)
+       ))))
+  (catppuccin-reload)
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   )
