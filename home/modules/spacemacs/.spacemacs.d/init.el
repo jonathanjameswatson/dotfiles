@@ -632,4 +632,7 @@ before packages are loaded."
        ))))
   (catppuccin-reload)
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+
+  (setq evil-want-minibuffer t)
+  (evil-define-key 'normal global-map (kbd "<escape>") 'keyboard-escape-quit)
   )
