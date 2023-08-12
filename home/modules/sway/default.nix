@@ -152,7 +152,7 @@ in {
       };
 
       fonts = {
-        names = ["SauceCodePro Nerd Font" "Noto Color Emoji"];
+        names = ["SauceCodePro Nerd Font"];
         size = 12.0;
       };
     };
