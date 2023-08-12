@@ -14,6 +14,7 @@ in {
     waybarOverride
     networkmanagerapplet
     pavucontrol
+    blueman
   ];
 
   programs.waybar = {
@@ -23,7 +24,12 @@ in {
     settings = [
       {
         modules-left = ["sway/workspaces"];
-        modules-right = ["network" "pulseaudio" "clock"];
+        modules-right = [
+          "network"
+          "pulseaudio"
+          "bluetooth"
+          "clock"
+        ];
 
         network = {
           format = "{ifname}";
@@ -39,6 +45,17 @@ in {
 
         pulseaudio = {
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
+        };
+
+        bluetooth = {
+          format = " {status}";
+          format-connected = " {device_alias}";
+          format-connected-battery = " {device_alias} {device_battery_percentage}%";
+          tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
+          on-click = "${pkgs.blueman}/bin/blueman-manager";
         };
       }
     ];
