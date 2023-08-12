@@ -1,0 +1,87 @@
+
+* {
+    font-size: 12pt;
+    font-family: SauceCodePro Nerd Font; /* , Noto Color Emoji; */
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+window#waybar > .horizontal {
+    margin: 10px 10px 0 10px;
+}
+
+#workspaces {
+    background: transparent;
+}
+
+#workspaces button {
+    border: 1px solid @mauve;
+    background-color: @mantle;
+    color: @mauve;
+
+    margin: 0 10px 0 0;
+    padding: 4px 0 3px 0;
+    border-radius: 0;
+}
+
+#workspaces button.active,
+#workspaces button.focused {
+    background-color: @base;
+    color: @blue;
+    border-color: @blue;
+}
+
+#workspaces button.urgent {
+    background-color: @base;
+    color: @red;
+    border-color: @red;
+}
+
+#network,
+#bluetooth,
+#pulseaudio,
+#clock {
+    border: 1px solid @blue;
+    background-color: @base;
+    color: white;
+
+    margin: 0 0 0 10px;
+    padding: 4px 7px 3px 8px;
+}
+
+#network {
+    color: @flamingo;
+    border-color: @flamingo;
+}
+
+#bluetooth {
+    color: @blue;
+    border-color: @blue;
+}
+
+#pulseaudio {
+    color: @pink;
+    border-color: @pink;
+}
+
+#pulseaudio.muted {
+    color: @red;
+    border-color: @red;
+}
+
+#clock {
+    color: @lavender;
+    border-color: @lavender;
+}
+
+tooltip {
+    background: @base;
+    border: 1px solid @pink;
+}
+
+tooltip label {
+    color: @text;
+}

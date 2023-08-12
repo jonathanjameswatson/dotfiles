@@ -9,17 +9,20 @@
   menu = "wofi --show drun";
   lock = "${pkgs.swaylock}/bin/swaylock";
   detatchedLock = "${lock} -f";
-  gtkTheme = "Adwaita-dark";
-  gtkThemeVariable = "Adwaita:dark";
+  gtkTheme = "Catppuccin-Macchiato-Standard-Blue-Dark";
+  catppuccinOverride = pkgs.catppuccin-gtk.override {
+    accents = ["blue"];
+    size = "standard";
+    variant = "macchiato";
+  };
 in {
   home.packages = with pkgs; [
-    swaylock
     wl-clipboard
-    alacritty
     wofi
     kanshi
-    waybar
     swaynotificationcenter
+    catppuccinOverride
+    gnome.gnome-themes-extra
 
     (
       pkgs.writeShellApplication {
@@ -36,6 +39,10 @@ in {
 
   programs.alacritty = {
     enable = true;
+    settings = {
+      import = ["${inputs.catppuccin-alacritty}/catppuccin-macchiato.yml"];
+      font.size = 13.5;
+    };
   };
 
   services.mako = {
@@ -62,9 +69,12 @@ in {
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures = {
-      base = true;
       gtk = true;
     };
+
+    extraConfigEarly = ''
+      include ${inputs.catppuccin-i3}/themes/catppuccin-macchiato
+    '';
 
     config = rec {
       modifier = "Mod4";
@@ -96,17 +106,55 @@ in {
       };
 
       gaps = {
-        bottom = 3;
-        top = 3;
-        horizontal = 3;
-        vertical = 3;
-        inner = 3;
-        left = 3;
-        right = 3;
-        outer = 3;
+        inner = 10;
+        outer = 0;
       };
 
       focus.wrapping = "workspace";
+
+      colors = {
+        background = "$base";
+        focused = {
+          border = "$blue";
+          background = "$base";
+          text = "$text";
+          indicator = "$green";
+          childBorder = "$blue";
+        };
+        focusedInactive = {
+          border = "$mauve";
+          background = "$mantle";
+          text = "$text";
+          indicator = "$green";
+          childBorder = "$mauve";
+        };
+        unfocused = {
+          border = "$mauve";
+          background = "$crust";
+          text = "$text";
+          indicator = "$green";
+          childBorder = "$mauve";
+        };
+        urgent = {
+          border = "$red";
+          background = "$base";
+          text = "$peach";
+          indicator = "$overlay0";
+          childBorder = "$red";
+        };
+        placeholder = {
+          border = "$overlay0";
+          background = "$base";
+          text = "$text";
+          indicator = "$overlay0";
+          childBorder = "$overlay0";
+        };
+      };
+
+      fonts = {
+        names = ["SauceCodePro Nerd Font" "Noto Color Emoji"];
+        size = 12.0;
+      };
     };
 
     extraSessionCommands = ''
@@ -121,7 +169,7 @@ in {
       export SDL_VIDEODRIVER=wayland
       export _JAVA_AWT_WM_NONREPARENTING=1=1
 
-      export GTK_THEME=${gtkThemeVariable}
+      export GTK_THEME=${gtkTheme}
 
       source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
     '';
@@ -131,11 +179,40 @@ in {
 
   gtk = {
     enable = true;
+
     theme = {
-      package = pkgs.gnome.gnome-themes-extra;
+      package = catppuccinOverride;
       name = gtkTheme;
+    };
+
+    cursorTheme = {
+      name = "Catppuccin-Macchiato-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.macchiatoDark;
+    };
+
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
     };
   };
 
-  systemd.user.sessionVariables.GTK_THEME = gtkThemeVariable;
+  systemd.user.sessionVariables.GTK_THEME = gtkTheme;
+  home.sessionVariables.GTK_THEME = gtkTheme;
+
+  home.activation.gtk4-fix = ''
+    mkdir -p ~/.config/gtk-4.0/
+    ln -sf ${catppuccinOverride}/share/themes/Catppuccin-*-Dark/gtk-4.0/* ~/.config/gtk-4.0/
+  '';
+
+  programs.swaylock = {
+    enable = true;
+    settings = {
+      color = "#24273a";
+    };
+  };
 }

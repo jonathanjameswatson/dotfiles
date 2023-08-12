@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./modules/sway
+    ./modules/waybar
     ./modules/spacemacs
     ./modules/neovim
     ./modules/git
@@ -28,7 +29,6 @@
     home.stateVersion = "23.05";
 
     home.packages = with pkgs; [
-      networkmanagerapplet
       discord
     ];
 
@@ -39,5 +39,8 @@
       enableBashIntegration = true;
       nix-direnv.enable = true;
     };
+
+    xdg.userDirs.enable = true;
+    services.mpd.enable = true;
   };
 }

@@ -11,6 +11,19 @@
       url = "github:nix-community/emacs-overlay/e10103d1d5e90f4c20136053ad3d4379fdcc2f33";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin-alacritty = {
+      url = "github:catppuccin/alacritty";
+      flake = false;
+    };
+    catppuccin-i3 = {
+      url = "github:catppuccin/i3";
+      flake = false;
+    };
+    catppuccin-waybar = {
+      url = "github:catppuccin/waybar";
+      flake = false;
+    };
   };
 
   outputs = {
