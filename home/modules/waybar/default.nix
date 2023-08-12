@@ -9,12 +9,23 @@
   waybarOverride = pkgs.waybar.overrideAttrs (oldAttrs: {
     mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
   });
+  toggleBluetooth = pkgs.writeShellApplication {
+    name = "toggle-bluetooth";
+    text = ''
+      if bluetoothctl show | grep -q "Powered: no"; then
+          bluetoothctl power on >> /dev/null
+      else
+          bluetoothctl power off >> /dev/null
+      fi
+    '';
+  };
 in {
   home.packages = with pkgs; [
     waybarOverride
     networkmanagerapplet
     pavucontrol
     blueman
+    toggleBluetooth
   ];
 
   programs.waybar = {
@@ -56,6 +67,7 @@ in {
           tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
           tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
           on-click = "${pkgs.blueman}/bin/blueman-manager";
+          on-click-right = "${toggleBluetooth}/bin/toggle-bluetooth";
         };
       }
     ];
