@@ -78,8 +78,9 @@ This function should only modify configuration layer settings."
      ;; spell-checking
      ;; syntax-checking
      ;; better-defaults
-     ;; lsp
      ;; org
+
+     lsp
 
      theming
      treemacs)
@@ -95,7 +96,8 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages
    '(
      ssh-agency
-     catppuccin-theme)
+     catppuccin-theme
+     direnv)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -635,4 +637,6 @@ before packages are loaded."
 
   (setq evil-want-minibuffer t)
   (evil-define-key 'normal global-map (kbd "<escape>") 'keyboard-escape-quit)
+
+  (direnv-mode)
   )
