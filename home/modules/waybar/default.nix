@@ -4,6 +4,7 @@
   lib,
   config,
   pkgs,
+  theme,
   ...
 }: let
   waybarOverride = pkgs.waybar.overrideAttrs (oldAttrs: {
@@ -73,8 +74,7 @@ in {
     ];
 
     style = ''
-      @import "${inputs.catppuccin-waybar}/themes/macchiato.css";
-
+      ${theme.gtkCssVariables}
       ${builtins.readFile ./style.css}
     '';
   };

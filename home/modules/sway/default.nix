@@ -4,21 +4,28 @@
   lib,
   config,
   pkgs,
+  theme,
   ...
 }: let
   menu = "wofi --show drun";
   lock = "${pkgs.swaylock}/bin/swaylock";
   detatchedLock = "${lock} -f";
-  gtkTheme = "Catppuccin-Macchiato-Standard-Blue-Dark";
+  titleTheme = lib.mapAttrs (name: value:
+    if lib.isString value
+    then lib.jjw.strings.toTitle value
+    else value)
+  theme;
+  mode = lib.jjw.catppuccin.themeMode theme;
+  titleMode = lib.jjw.strings.toTitle mode;
+  gtkTheme = "Catppuccin-${titleTheme.variant}-Standard-${titleTheme.accent}-${titleMode}";
   catppuccinOverride = pkgs.catppuccin-gtk.override {
-    accents = ["blue"];
+    accents = [theme.accent];
     size = "standard";
-    variant = "macchiato";
+    variant = theme.variant;
   };
 in {
   home.packages = with pkgs; [
     wl-clipboard
-    wofi
     kanshi
     swaynotificationcenter
     catppuccinOverride
@@ -40,7 +47,7 @@ in {
   programs.alacritty = {
     enable = true;
     settings = {
-      import = ["${inputs.catppuccin-alacritty}/catppuccin-macchiato.yml"];
+      import = ["${inputs.catppuccin-alacritty}/catppuccin-${theme.variant}.yml"];
       font.size = 13.5;
     };
   };
@@ -72,9 +79,7 @@ in {
       gtk = true;
     };
 
-    extraConfigEarly = ''
-      include ${inputs.catppuccin-i3}/themes/catppuccin-macchiato
-    '';
+    extraConfigEarly = theme.swayVariables;
 
     config = rec {
       modifier = "Mod4";
@@ -151,6 +156,10 @@ in {
         };
       };
 
+      output."*" = {
+        background = "$crust solid_color";
+      };
+
       fonts = {
         names = ["SauceCodePro Nerd Font"];
         size = 12.0;
@@ -177,42 +186,48 @@ in {
     extraConfig = "exec swaync";
   };
 
-  gtk = {
-    enable = true;
+  gtk =
+    {
+      enable = true;
 
-    theme = {
-      package = catppuccinOverride;
-      name = gtkTheme;
-    };
+      theme = {
+        package = catppuccinOverride;
+        name = gtkTheme;
+      };
 
-    cursorTheme = {
-      name = "Catppuccin-Macchiato-Dark-Cursors";
-      package = pkgs.catppuccin-cursors.macchiatoDark;
-    };
+      cursorTheme = {
+        name = "Catppuccin-${titleTheme.variant}-${titleMode}-Cursors";
+        package = pkgs.catppuccin-cursors."${theme.variant}${titleMode}";
+      };
 
-    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+      gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    }
+    // (
+      if theme.isDark
+      then {
+        gtk3.extraConfig = {
+          gtk-application-prefer-dark-theme = 1;
+        };
 
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-  };
+        gtk4.extraConfig = {
+          gtk-application-prefer-dark-theme = 1;
+        };
+      }
+      else {}
+    );
 
   systemd.user.sessionVariables.GTK_THEME = gtkTheme;
   home.sessionVariables.GTK_THEME = gtkTheme;
 
   home.activation.gtk4-fix = ''
     mkdir -p ~/.config/gtk-4.0/
-    ln -sf ${catppuccinOverride}/share/themes/Catppuccin-*-Dark/gtk-4.0/* ~/.config/gtk-4.0/
+    ln -sf ${catppuccinOverride}/share/themes/Catppuccin-*-${titleMode}/gtk-4.0/* ~/.config/gtk-4.0/
   '';
 
   programs.swaylock = {
     enable = true;
     settings = {
-      color = "#24273a";
+      color = theme.palette.base;
     };
   };
 }

@@ -620,8 +620,8 @@ before packages are loaded."
 
   (setq nix-nixfmt-bin "alejandra-quiet")
 
-  (setq catppuccin-flavor 'macchiato)
-  (setq theming-modifications (let-alist catppuccin-macchiato-colors
+  (setq catppuccin-flavor '@catppuccin-variant@)
+  (setq theming-modifications (let-alist catppuccin-@catppuccin-variant@-colors
     `((catppuccin
        (powerline-active1 :background ,.mauve :foreground ,.base)
        (powerline-active2 :background ,.mauve :foreground ,.base)

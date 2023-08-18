@@ -13,38 +13,7 @@
       "original": {
         "owner": "catppuccin",
         "repo": "alacritty",
-        "type": "github"
-      }
-    },
-    "catppuccin-i3": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1677157164,
-        "narHash": "sha256-6Cvsmdl3OILz1vZovyBIuuSpm207I3W0dmUGowR9Ugk=",
-        "owner": "catppuccin",
-        "repo": "i3",
-        "rev": "c89098fc3517b64f0422aaaccb98dcab6ae9348f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "i3",
-        "type": "github"
-      }
-    },
-    "catppuccin-waybar": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1678438606,
-        "narHash": "sha256-WLJMA2X20E5PCPg0ZPtSop0bfmu+pLImP9t8A8V4QK8=",
-        "owner": "catppuccin",
-        "repo": "waybar",
-        "rev": "f74ab1eecf2dcaf22569b396eed53b2b2fbe8aff",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "waybar",
+        "rev": "3c808cbb4f9c87be43ba5241bc57373c793d2f17",
         "type": "github"
       }
     },
@@ -145,8 +114,6 @@
     "root": {
       "inputs": {
         "catppuccin-alacritty": "catppuccin-alacritty",
-        "catppuccin-i3": "catppuccin-i3",
-        "catppuccin-waybar": "catppuccin-waybar",
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs"

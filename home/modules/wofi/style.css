@@ -1,0 +1,19 @@
+* {
+    font-family: SauceCodePro Nerd Font;
+    font-size: 12.0pt;
+    border-radius: 0;
+}
+
+#window {
+    background-color: @base;
+    border: 1px solid @blue;
+}
+
+#input {
+    background: none;
+    border-bottom: 1px solid @blue;
+}
+
+#entry {
+    padding-left: 8px;
+}

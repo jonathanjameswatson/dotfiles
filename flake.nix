@@ -13,15 +13,7 @@
     };
 
     catppuccin-alacritty = {
-      url = "github:catppuccin/alacritty";
-      flake = false;
-    };
-    catppuccin-i3 = {
-      url = "github:catppuccin/i3";
-      flake = false;
-    };
-    catppuccin-waybar = {
-      url = "github:catppuccin/waybar";
+      url = "github:catppuccin/alacritty/3c808cbb4f9c87be43ba5241bc57373c793d2f17";
       flake = false;
     };
   };
@@ -33,23 +25,36 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+    lib = nixpkgs.lib.extend (self: super: {jjw = import ./lib {lib = self;};} // home-manager.lib);
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    theme = lib.jjw.catppuccin.mkTheme {
+      variant = "latte";
+      accent = "blue";
+      isDark = false;
+    };
   in {
     packages = import ./pkgs {inherit pkgs;};
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [
-        ./nixos/configuration.nix
-      ];
-      specialArgs = {inherit inputs outputs;};
+      specialArgs = {inherit inputs outputs lib theme;};
+      modules = [./nixos/configuration.nix];
     };
 
     homeConfigurations = {
       "jonathan@nixos" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home];
+        extraSpecialArgs = {inherit inputs outputs lib theme;};
+        modules = [
+          ./home
+          {
+            home = {
+              username = "jonathan";
+              homeDirectory = "/home/jonathan";
+              stateVersion = "23.05";
+            };
+          }
+        ];
       };
     };
   };

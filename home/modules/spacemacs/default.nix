@@ -4,6 +4,7 @@
   lib,
   config,
   pkgs,
+  theme,
   ...
 }: let
   extraPackages = epkgs: with epkgs; [vterm];
@@ -38,7 +39,22 @@ in {
   ];
 
   home.file.".spacemacs.d" = {
-    source = ./.spacemacs.d;
+    source = pkgs.stdenv.mkDerivation {
+      name = ".spacemacs.d";
+      src = builtins.path {
+        name = ".spacemacs.d";
+        path = ./.spacemacs.d;
+      };
+      sourceRoot = ".";
+      installPhase = ''
+        substituteInPlace .spacemacs.d/init.el \
+            --subst-var-by catppuccin-variant "${theme.variant}"
+        mkdir -p $out
+        cp -a .spacemacs.d/. $out
+      '';
+      preferLocalBuild = true;
+      allowSubstitutes = false;
+    };
     recursive = true;
   };
 

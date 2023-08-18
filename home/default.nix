@@ -8,6 +8,7 @@
   imports = [
     ./modules/sway
     ./modules/waybar
+    ./modules/wofi
     ./modules/spacemacs
     ./modules/neovim
     ./modules/git
@@ -19,14 +20,8 @@
       allowUnfreePredicate = _: true;
     };
 
-    home = {
-      username = "jonathan";
-      homeDirectory = "/home/jonathan";
-    };
-
     programs.home-manager.enable = true;
     systemd.user.startServices = "sd-switch";
-    home.stateVersion = "23.05";
 
     home.packages = with pkgs; [
       discord
