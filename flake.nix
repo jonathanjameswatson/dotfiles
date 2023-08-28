@@ -28,9 +28,8 @@
     lib = nixpkgs.lib.extend (self: super: {jjw = import ./lib {lib = self;};} // home-manager.lib);
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
     theme = lib.jjw.catppuccin.mkTheme {
-      variant = "latte";
+      variant = "macchiato";
       accent = "blue";
-      isDark = false;
     };
   in {
     packages = import ./pkgs {inherit pkgs;};

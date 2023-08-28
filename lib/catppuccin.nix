@@ -16,10 +16,10 @@
   mkTheme = {
     variant,
     accent,
-    isDark,
   }:
     mkThemeOverride {
-      inherit variant accent isDark;
+      inherit variant accent;
+      isDark = variant != "latte";
       palette = palettes.${variant};
     };
 
