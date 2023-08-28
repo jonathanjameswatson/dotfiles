@@ -647,4 +647,7 @@ before packages are loaded."
   (evil-define-key 'normal global-map (kbd "<escape>") 'keyboard-escape-quit)
 
   (direnv-mode)
+
+  (setq epg-pinentry-mode 'loopback)
+  (pinentry-start)
   )
