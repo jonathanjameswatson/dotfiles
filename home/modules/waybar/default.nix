@@ -47,6 +47,7 @@ in {
           format = "{ifname}";
           format-wifi = "{essid} ({signalStrength}%)";
           format-ethernet = "{ipaddr}/{cidr}";
+          format-disconnected = "Disconnected";
           tooltip-format = "{ifname} via {gwaddr}";
           tooltip-format-wifi = "{essid} ({signalStrength}%)";
           tooltip-format-ethernet = "{ifname}";
