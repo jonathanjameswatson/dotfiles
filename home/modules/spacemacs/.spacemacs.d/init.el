@@ -650,4 +650,5 @@ before packages are loaded."
 
   (setq epg-pinentry-mode 'loopback)
   (pinentry-start)
+  (setenv "PINENTRY_USER_DATA" "USE_CURSES=0")
   )
