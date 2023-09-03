@@ -12,6 +12,7 @@
     ./modules/spacemacs
     ./modules/neovim
     ./modules/git
+    ./modules/flameshot
   ];
 
   config = {

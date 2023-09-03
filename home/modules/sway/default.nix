@@ -108,6 +108,8 @@ in {
         "${modifier}+Ctrl+Shift+e" = "exec nag-graphical 'Exit sway?' 'swaymsg exit'";
         "${modifier}+Shift+s" = "exec nag-graphical 'Suspend?' 'swaymsg exec systemctl suspend'";
         "${modifier}+x" = "exec ${lock}";
+
+        "Print" = "exec flameshot gui";
       };
 
       gaps = {
@@ -183,7 +185,11 @@ in {
       source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
     '';
 
-    extraConfig = "exec swaync";
+    extraConfig = ''
+      exec swaync
+
+      for_window [app_id="flameshot"] fullscreen enable global
+    '';
   };
 
   gtk =
@@ -215,6 +221,11 @@ in {
       }
       else {}
     );
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+  };
 
   systemd.user.sessionVariables.GTK_THEME = gtkTheme;
   home.sessionVariables.GTK_THEME = gtkTheme;
