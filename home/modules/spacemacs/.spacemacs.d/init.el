@@ -58,6 +58,7 @@ This function should only modify configuration layer settings."
      latex
      (nixos :variables
             nixos-format-on-save t)
+     csv
 
      (ivy :variables
           ivy-initial-inputs-alist nil
@@ -97,7 +98,6 @@ This function should only modify configuration layer settings."
    '(
      ssh-agency
      catppuccin-theme
-     direnv)
      direnv
      pinentry)
 
