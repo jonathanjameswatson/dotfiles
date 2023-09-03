@@ -41,7 +41,7 @@
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
-    pinentryFlavor = "curses";
+    pinentryFlavor = "tty";
     extraConfig = ''
       allow-emacs-pinentry
       allow-loopback-pinentry
