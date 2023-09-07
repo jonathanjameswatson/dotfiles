@@ -4,7 +4,16 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    font-awesome
+    liberation_ttf
+    (nerdfonts.override {fonts = ["SourceCodePro" "FiraCode" "CascadiaCode" "Noto"];})
+  ];
+in {
   imports = [
     ./modules/sway
     ./modules/waybar
@@ -24,9 +33,11 @@
     programs.home-manager.enable = true;
     systemd.user.startServices = "sd-switch";
 
-    home.packages = with pkgs; [
-      discord
-    ];
+    home.packages = with pkgs;
+      [
+        discord
+      ]
+      ++ fonts;
 
     programs.firefox.enable = true;
 
@@ -38,5 +49,7 @@
 
     xdg.userDirs.enable = true;
     services.mpd.enable = true;
+
+    fonts.fontconfig.enable = true;
   };
 }
