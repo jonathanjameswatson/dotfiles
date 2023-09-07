@@ -22,6 +22,7 @@ in {
     ./modules/neovim
     ./modules/git
     ./modules/flameshot
+    ./modules/swaync
   ];
 
   config = {

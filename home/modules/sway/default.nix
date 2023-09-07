@@ -27,7 +27,6 @@ in {
   home.packages = with pkgs; [
     wl-clipboard
     kanshi
-    swaynotificationcenter
     catppuccinOverride
     gnome.gnome-themes-extra
 
@@ -50,12 +49,6 @@ in {
       import = ["${inputs.catppuccin-alacritty}/catppuccin-${theme.variant}.yml"];
       font.size = 13.5;
     };
-  };
-
-  services.mako = {
-    enable = true;
-    maxVisible = 5;
-    sort = "+time";
   };
 
   services.swayidle = {
@@ -186,8 +179,6 @@ in {
     '';
 
     extraConfig = ''
-      exec swaync
-
       for_window [app_id="flameshot"] fullscreen enable global
     '';
   };
