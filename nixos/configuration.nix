@@ -162,13 +162,4 @@
     TTYVHangup = true;
     TTYVTDisallocate = true;
   };
-
-  fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    font-awesome
-    liberation_ttf
-    (nerdfonts.override {fonts = ["SourceCodePro" "FiraCode" "CascadiaCode"];})
-  ];
 }
