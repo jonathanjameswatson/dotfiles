@@ -15,14 +15,14 @@
   ];
 in {
   imports = [
-    ./modules/sway
-    ./modules/waybar
-    ./modules/wofi
-    ./modules/spacemacs
-    ./modules/neovim
-    ./modules/git
-    ./modules/flameshot
-    ./modules/swaync
+    ./sway
+    ./waybar
+    ./wofi
+    ./spacemacs
+    ./neovim
+    ./git
+    ./flameshot
+    ./swaync
   ];
 
   config = {
