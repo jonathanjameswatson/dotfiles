@@ -15,14 +15,9 @@
   ];
 in {
   imports = [
-    ./sway
-    ./waybar
-    ./wofi
-    ./spacemacs
-    ./neovim
-    ./git
-    ./flameshot
-    ./swaync
+    ./editors
+    ./desktop
+    ./cli
   ];
 
   config = {

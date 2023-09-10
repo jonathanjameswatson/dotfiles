@@ -22,7 +22,6 @@
   };
 in {
   home.packages = with pkgs; [
-    waybarOverride
     networkmanagerapplet
     pavucontrol
     blueman

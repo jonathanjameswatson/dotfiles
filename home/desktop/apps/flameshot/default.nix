@@ -28,4 +28,8 @@ in {
   home.activation.flameshot = ''
     mkdir -p ${savePath}
   '';
+
+  wayland.windowManager.sway.extraConfig = ''
+    for_window [app_id="flameshot"] fullscreen enable global
+  '';
 }
