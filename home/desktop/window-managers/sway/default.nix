@@ -9,23 +9,22 @@
 }: let
   menu = "wofi --show drun";
   lock = "${pkgs.swaylock}/bin/swaylock";
-  detatchedLock = "${lock} -f";
+  detatched-lock = "${lock} -f";
+
+  nag-graphical =
+    pkgs.writeShellApplication
+    {
+      name = "nag-graphical";
+      runtimeInputs = [pkgs.gnome3.zenity];
+      text = ''
+        if zenity --question --text="$1"; then
+          $2
+        fi
+      '';
+    };
 in {
   home.packages = with pkgs; [
-    wl-clipboard
-    kanshi
-
-    (
-      pkgs.writeShellApplication {
-        name = "nag-graphical";
-        runtimeInputs = [gnome3.zenity];
-        text = ''
-          if zenity --question --text="$1"; then
-            $2
-          fi
-        '';
-      }
-    )
+    nag-graphical
   ];
 
   services.swayidle = {
@@ -33,14 +32,13 @@ in {
     events = [
       {
         event = "before-sleep";
-        command = detatchedLock;
+        command = detatched-lock;
       }
       {
         event = "lock";
-        command = detatchedLock;
+        command = detatched-lock;
       }
     ];
-    # systemdTarget = "graphical-session.target";
   };
 
   wayland.windowManager.sway = {

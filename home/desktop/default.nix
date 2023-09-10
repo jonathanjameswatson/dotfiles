@@ -7,5 +7,6 @@
     ./launchers
     ./apps
     ./gtk
+    ./wayland
   ];
 }
