@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./shells
-    ./programs
+    ./bash
+    ./zsh
   ];
 }
