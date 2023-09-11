@@ -46,6 +46,7 @@ in {
     wrapperFeatures = {
       gtk = true;
     };
+    xwayland = true;
 
     extraConfigEarly = theme.swayVariables;
 

@@ -29,12 +29,6 @@ in {
     programs.home-manager.enable = true;
     systemd.user.startServices = "sd-switch";
 
-    home.packages = with pkgs;
-      [
-        discord
-      ]
-      ++ fonts;
-
     programs.firefox.enable = true;
 
     programs.direnv = {
@@ -47,5 +41,6 @@ in {
     services.mpd.enable = true;
 
     fonts.fontconfig.enable = true;
+    home.packages = fonts;
   };
 }
