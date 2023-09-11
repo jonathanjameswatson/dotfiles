@@ -12,7 +12,7 @@
     };
 
     nixd = {
-      url = "github:nix-community/nixd/abd261601d265f2571fade4a92da548c4d017e01";
+      url = "github:nix-community/nixd/22f8532d9dcc3b50c46a5da5393fd6960a7a7cdc";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
