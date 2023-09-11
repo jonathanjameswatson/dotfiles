@@ -47,7 +47,8 @@ window#waybar > .horizontal {
 #bluetooth,
 #pulseaudio,
 #clock,
-#custom-notification {
+#custom-notification,
+#tray {
     border: 1px solid @blue;
     background-color: @base;
     color: white;
@@ -85,6 +86,11 @@ window#waybar > .horizontal {
     color: @yellow;
     border-color: @yellow;
     min-width: 13px;
+}
+
+#tray {
+    color: @green;
+    border-color: @green;
 }
 
 tooltip {

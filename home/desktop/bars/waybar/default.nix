@@ -41,6 +41,7 @@ in {
           "bluetooth"
           "clock"
           "custom/notification"
+          "tray"
         ];
 
         network = {
@@ -129,6 +130,10 @@ in {
           on-click-right = "swaync-client -d -sw";
           escape = true;
           align = 0;
+        };
+
+        tray = {
+          spacing = 10;
         };
       }
     ];
