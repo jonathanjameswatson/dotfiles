@@ -57,7 +57,8 @@ This function should only modify configuration layer settings."
      vue
      latex
      (nixos :variables
-            nixos-format-on-save t)
+            nixos-format-on-save t
+            nix-backend 'lsp)
      csv
 
      (ivy :variables
@@ -653,4 +654,10 @@ before packages are loaded."
   (setq epg-pinentry-mode 'loopback)
   (pinentry-start)
   (setenv "PINENTRY_USER_DATA" "USE_CURSES=0")
+
+  (with-eval-after-load 'lsp-mode
+    (lsp-register-client
+      (make-lsp-client :new-connection (lsp-stdio-connection "nixd")
+                       :major-modes '(nix-mode)
+                       :server-id 'nixd)))
   )

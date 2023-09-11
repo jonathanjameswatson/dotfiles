@@ -6,6 +6,15 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-compat = {
+      url = "github:inclyc/flake-compat/70e56389c58bbd300d11778913b255477ebbae22";
+      flake = false;
+    };
+
+    nixd = {
+      url = "github:nix-community/nixd/abd261601d265f2571fade4a92da548c4d017e01";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay/e10103d1d5e90f4c20136053ad3d4379fdcc2f33";
