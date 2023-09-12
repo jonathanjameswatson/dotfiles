@@ -1,6 +1,5 @@
 {
   inputs,
-  outputs,
   lib,
   config,
   pkgs,
@@ -19,7 +18,7 @@
         "fzf-tab"
       ];
       theme = "zsh-powerlevel10k/powerlevel10k";
-      custom = lib.debug.traceVal "${outputs.packages.oh-my-zsh-custom}";
+      custom = lib.debug.traceVal "${pkgs.oh-my-zsh-custom}";
     };
     initExtraBeforeCompInit = ''
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then

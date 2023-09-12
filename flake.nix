@@ -6,6 +6,9 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    jjw-pkgs.url = "path:./pkgs";
+
     flake-compat = {
       url = "github:inclyc/flake-compat/70e56389c58bbd300d11778913b255477ebbae22";
       flake = false;
@@ -31,17 +34,19 @@
     self,
     nixpkgs,
     home-manager,
+    jjw-pkgs,
     ...
   } @ inputs: let
-    inherit (self) outputs;
     lib = nixpkgs.lib.extend (self: super: {jjw = import ./lib {lib = self;};} // home-manager.lib);
-    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    inherit (self) outputs;
     theme = lib.jjw.catppuccin.mkTheme {
       variant = "macchiato";
       accent = "blue";
     };
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
   in {
-    packages = import ./pkgs {inherit pkgs;};
+    packages = jjw-pkgs.packages;
+    overlays = jjw-pkgs.overlays;
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -61,6 +66,10 @@
               homeDirectory = "/home/jonathan";
               stateVersion = "23.05";
             };
+
+            nixpkgs.overlays = [
+              jjw-pkgs.overlays.jjw
+            ];
           }
         ];
       };
