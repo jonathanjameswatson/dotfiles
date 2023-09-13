@@ -7,12 +7,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    jjw-pkgs.url = "path:./pkgs";
+    jjw-pkgs = {
+      url = "path:./pkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
 
     flake-compat = {
       url = "github:inclyc/flake-compat/70e56389c58bbd300d11778913b255477ebbae22";
       flake = false;
     };
+    flake-utils.url = "github:numtide/flake-utils/ff7b65b44d01cf9ba6a71320833626af21126384";
 
     nixd = {
       url = "github:nix-community/nixd/22f8532d9dcc3b50c46a5da5393fd6960a7a7cdc";
@@ -21,7 +28,11 @@
 
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay/e10103d1d5e90f4c20136053ad3d4379fdcc2f33";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
     };
 
     catppuccin-alacritty = {
