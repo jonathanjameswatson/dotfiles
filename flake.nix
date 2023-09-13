@@ -16,7 +16,7 @@
     };
 
     flake-compat = {
-      url = "github:inclyc/flake-compat/70e56389c58bbd300d11778913b255477ebbae22";
+      url = "github:jonathanjameswatson/flake-compat/8bf105319d44f6b9f0d764efa4fdef9f1cc9ba1c";
       flake = false;
     };
     flake-utils.url = "github:numtide/flake-utils/ff7b65b44d01cf9ba6a71320833626af21126384";
