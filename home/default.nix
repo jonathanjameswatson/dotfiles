@@ -29,8 +29,6 @@ in {
     programs.home-manager.enable = true;
     systemd.user.startServices = "sd-switch";
 
-    programs.firefox.enable = true;
-
     programs.direnv = {
       enable = true;
       enableBashIntegration = true;
