@@ -142,19 +142,38 @@
           "flake-utils"
         ],
         "git-acquire-src": "git-acquire-src",
+        "nix-zsh-completions-src": "nix-zsh-completions-src",
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "zsh-nix-shell-src": "zsh-nix-shell-src"
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-b+gRTGmvGuDLsGIRmvr0e/bchaa8QBTnFrtd7DvFzRQ=",
+        "narHash": "sha256-Myecvu/oi5550vC+1zFlvX9g3/llnl2WlpbBlzNLYVo=",
         "path": "./pkgs",
         "type": "path"
       },
       "original": {
         "path": "./pkgs",
         "type": "path"
+      }
+    },
+    "nix-zsh-completions-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694713624,
+        "narHash": "sha256-n8/zYO/x9DMKa03SlFQz7vP1jX4tpfQNmJaNjOCpJgQ=",
+        "owner": "nix-community",
+        "repo": "nix-zsh-completions",
+        "rev": "ae0c9ff7f709b929ba4beb8c50e4abfc74c1352a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-zsh-completions",
+        "rev": "ae0c9ff7f709b929ba4beb8c50e4abfc74c1352a",
+        "type": "github"
       }
     },
     "nixd": {
@@ -251,6 +270,23 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "zsh-nix-shell-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693571504,
+        "narHash": "sha256-dE86o8LfEfswIIP9r0BJpxWvkoYdu7VQcJOKTLYqtWs=",
+        "owner": "chisui",
+        "repo": "zsh-nix-shell",
+        "rev": "406ce293f5302fdebca56f8c59ec615743260604",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chisui",
+        "repo": "zsh-nix-shell",
+        "rev": "406ce293f5302fdebca56f8c59ec615743260604",
         "type": "github"
       }
     }

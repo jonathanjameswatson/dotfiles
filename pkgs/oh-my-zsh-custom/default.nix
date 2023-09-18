@@ -2,37 +2,58 @@
   lib,
   stdenv,
   zsh-fzf-tab,
-  zsh-nix-shell,
-  zsh-completions,
   zsh-powerlevel10k,
-}:
-stdenv.mkDerivation {
-  name = "oh-my-zsh-custom";
-
+  zsh-nix-shell-src,
+  nix-zsh-completions-src,
+}: let
   plugins = [
-    zsh-fzf-tab
+    {
+      name = "fzf-tab";
+      dir = "${zsh-fzf-tab}/share/fzf-tab";
+    }
+    {
+      name = "nix-shell";
+      dir = zsh-nix-shell-src;
+    }
+    {
+      name = "nix-zsh-completions";
+      dir = nix-zsh-completions-src;
+    }
   ];
 
   themes = [
     zsh-powerlevel10k
   ];
+in
+  stdenv.mkDerivation {
+    name = "oh-my-zsh-custom";
 
-  installPhase = ''
-    pluginOutDir="$out/plugins"
-    mkdir -p "$pluginOutDir"
-    themeOutDir="$out/themes"
-    mkdir -p "$themeOutDir"
+    inherit themes;
 
-    for pluginDir in $plugins; do
-      cp -r "$pluginDir/share/." "$pluginOutDir/"
-    done
+    installPhase = let
+      pluginCommands = lib.concatStrings (
+        map ({
+          name,
+          dir,
+        }: ''
+          cp -r "${dir}/." "$pluginOutDir/${name}/"
+        '')
+        plugins
+      );
+    in ''
+      pluginOutDir="$out/plugins"
+      mkdir -p "$pluginOutDir"
+      themeOutDir="$out/themes"
+      mkdir -p "$themeOutDir"
 
-    for themeDir in $themes; do
-      cp -r "$themeDir/share/." "$themeOutDir/"
-    done
-  '';
-  dontUnpack = true;
+      ${pluginCommands}
 
-  preferLocalBuild = true;
-  allowSubstitutes = false;
-}
+      for themeDir in $themes; do
+        cp -r "$themeDir/share/." "$themeOutDir/"
+      done
+    '';
+    dontUnpack = true;
+
+    preferLocalBuild = true;
+    allowSubstitutes = false;
+  }
