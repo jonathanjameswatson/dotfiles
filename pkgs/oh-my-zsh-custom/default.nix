@@ -5,25 +5,33 @@
   zsh-powerlevel10k,
   zsh-nix-shell-src,
   nix-zsh-completions-src,
+  oh-my-zsh-plugins ? null,
+  oh-my-zsh-themes ? null,
 }: let
-  plugins = [
-    {
-      name = "fzf-tab";
-      dir = "${zsh-fzf-tab}/share/fzf-tab";
-    }
-    {
-      name = "nix-shell";
-      dir = zsh-nix-shell-src;
-    }
-    {
-      name = "nix-zsh-completions";
-      dir = nix-zsh-completions-src;
-    }
-  ];
+  plugins =
+    if oh-my-zsh-plugins != null
+    then oh-my-zsh-plugins
+    else [
+      {
+        name = "fzf-tab";
+        dir = "${zsh-fzf-tab}/share/fzf-tab";
+      }
+      {
+        name = "nix-shell";
+        dir = zsh-nix-shell-src;
+      }
+      {
+        name = "nix-zsh-completions";
+        dir = nix-zsh-completions-src;
+      }
+    ];
 
-  themes = [
-    zsh-powerlevel10k
-  ];
+  themes =
+    if oh-my-zsh-themes != null
+    then oh-my-zsh-themes
+    else [
+      zsh-powerlevel10k
+    ];
 in
   stdenv.mkDerivation {
     name = "oh-my-zsh-custom";
@@ -56,4 +64,9 @@ in
 
     preferLocalBuild = true;
     allowSubstitutes = false;
+
+    passthru = {
+      oh-my-zsh-plugins = plugins;
+      oh-my-zsh-themes = themes;
+    };
   }
