@@ -45,7 +45,9 @@ This function should only modify configuration layer settings."
      haskell
      rust
      racket
-     c-c++
+     (c-c++ :variables
+            c-c++-dap-adapters '(dap-gdb-lldb)
+            c-c++-enable-clang-format-on-save t)
      csharp
      java
      lua
