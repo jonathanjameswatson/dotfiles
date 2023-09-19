@@ -64,6 +64,7 @@
     description = "Jonathan Watson";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [];
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
@@ -162,4 +163,10 @@
     TTYVHangup = true;
     TTYVTDisallocate = true;
   };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+  };
+  environment.pathsToLink = ["/share/zsh"];
 }
