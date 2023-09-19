@@ -659,5 +659,6 @@ before packages are loaded."
     (lsp-register-client
       (make-lsp-client :new-connection (lsp-stdio-connection "nixd")
                        :major-modes '(nix-mode)
+                       :priority 0
                        :server-id 'nixd)))
   )

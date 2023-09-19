@@ -22,8 +22,7 @@
     flake-utils.url = "github:numtide/flake-utils/ff7b65b44d01cf9ba6a71320833626af21126384";
 
     nixd = {
-      url = "github:nix-community/nixd/22f8532d9dcc3b50c46a5da5393fd6960a7a7cdc";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:jonathanjameswatson/nixd/f1b6c54111237bc54cd346b1ede2164e6f50cd3b";
     };
 
     emacs-overlay = {
