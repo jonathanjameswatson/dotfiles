@@ -22,6 +22,7 @@
         "fzf"
         "nix-shell"
         "nix-zsh-completions"
+        "thefuck"
         "fzf-tab"
       ];
       theme = "zsh-powerlevel10k/powerlevel10k";
@@ -42,6 +43,4 @@
     source = ./.p10k.zsh;
     executable = true;
   };
-
-  # environments.pathsToLink = ["/share/zsh"];
 }
