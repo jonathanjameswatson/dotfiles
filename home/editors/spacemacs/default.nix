@@ -41,7 +41,6 @@ in {
   };
 
   home.packages = with pkgs; [
-    (ripgrep.override {withPCRE2 = true;})
     emacs-all-the-icons-fonts
     alejandra
     python3
