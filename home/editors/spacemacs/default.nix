@@ -7,6 +7,23 @@
   ...
 }: let
   extraPackages = epkgs: with epkgs; [vterm];
+  commonShellInit = ''
+    vterm_printf() {
+      if [ -n "$TMUX" ] && ([ "''${TERM%%-*}" = "tmux" ] || [ "''${TERM%%-*}" = "screen" ]); then
+        # Tell tmux to pass the escape sequences through
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+      elif [ "''${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
+      else
+        printf "\e]%s\e\\" "$1"
+      fi
+    }
+
+    vterm_prompt_end() {
+      vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+    }
+  '';
 in {
   nixpkgs.overlays = [inputs.emacs-overlay.overlay];
 
@@ -64,48 +81,53 @@ in {
     touch ~/.spacemacs.d/custom.el
   '';
 
-  programs.bash = {
-    enable = true;
-    initExtra = ''
-      # Extra bash shell configuration for vterm in emacs
+  programs.bash.initExtra = ''
+    # Extra bash shell configuration for vterm in emacs
 
-      vterm_printf() {
-        if [ -n "$TMUX" ] && ([ "''${TERM%%-*}" = "tmux" ] || [ "''${TERM%%-*}" = "screen" ]); then
-          # Tell tmux to pass the escape sequences through
-          printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-        elif [ "''${TERM%%-*}" = "screen" ]; then
-          # GNU screen (screen, screen-256color, screen-256color-bce)
-          printf "\eP\e]%s\007\e\\" "$1"
-        else
-          printf "\e]%s\e\\" "$1"
-        fi
+    ${commonShellInit}
+
+    if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+      function clear() {
+        vterm_printf "51;Evterm-clear-scrollback";
+        tput clear;
       }
 
-      if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
-        function clear() {
-          vterm_printf "51;Evterm-clear-scrollback";
-          tput clear;
-        }
-      fi
-
-      PROMPT_COMMAND="''${PROMPT_COMMAND:+$PROMPT_COMMAND; }"'echo -ne "\033]0;''${HOSTNAME}:''${PWD}\007"'
-
-      vterm_prompt_end(){
-        vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
-      }
       PS1=$PS1'\[$(vterm_prompt_end)\]'
+    fi
 
-      vterm_cmd() {
-          local vterm_elisp
-          vterm_elisp=""
-          while [ $# -gt 0 ]; do
-              vterm_elisp="$vterm_elisp""$(printf '"%s" ' "$(printf "%s" "$1" | ${pkgs.gnused}/bin/sed -e 's|\\|\\\\|g' -e 's|"|\\"|g')")"
-              shift
-          done
-          vterm_printf "51;E$vterm_elisp"
-      }
+    # End vterm configuration
+  '';
 
-      # End vterm configuration
-    '';
-  };
+  programs.zsh.initExtra = ''
+    # Extra zsh shell configuration for vterm in emacs
+
+    ${commonShellInit}
+
+    emacs_vterm_prompt () {
+        buffer_title_update=$(print -Pn "\e]2;%2~$\a")
+        pwd_update=$(print -Pn "\e]51;A$(whoami)@$(hostname):$(pwd)\e")
+        print "%{$buffer_title_update$pwd_update%}\\"
+    }
+
+    prompt_vterm_prompt_end() {
+        p10k segment -t "$(emacs_vterm_prompt)"
+    }
+
+    if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+        alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+
+        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+            "''${POWERLEVEL9K_LEFT_PROMPT_ELEMENTS[@]}"
+            vterm_prompt_end
+          )
+        POWERLEVEL9K_LEFT_SEGMENT_END_SEPARATOR=
+
+        if [[ ''${POWERLEVEL9K_TRANSIENT_PROMPT:-off} != 'off' ]]; then
+            POWERLEVEL9K_TRANSIENT_PROMPT=off
+            p10k reload
+        fi
+    fi
+
+    # End vterm configuration
+  '';
 }

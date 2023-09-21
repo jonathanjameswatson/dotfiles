@@ -698,4 +698,6 @@ before packages are loaded."
 
   (setq split-window-preferred-function 'split-window-sensibly-prefer-horizontal)
   (setq split-width-threshold 120)
+
+  (setq vterm-buffer-name-string "%s")
   )
