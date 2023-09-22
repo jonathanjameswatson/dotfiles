@@ -5,11 +5,6 @@
   pkgs,
   ...
 }: {
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = false;
-  };
-
   programs.zsh = {
     enable = true;
 
