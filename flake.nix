@@ -38,6 +38,11 @@
       url = "github:catppuccin/alacritty/3c808cbb4f9c87be43ba5241bc57373c793d2f17";
       flake = false;
     };
+
+    webcord-src = {
+      url = "github:SpacingBat3/WebCord/588a26cc3e1fa68d9a3ec2a91e0d2ec46bea6f11";
+      flake = false;
+    };
   };
 
   outputs = {

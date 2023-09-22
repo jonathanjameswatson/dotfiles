@@ -255,7 +255,8 @@
         "home-manager": "home-manager",
         "jjw-pkgs": "jjw-pkgs",
         "nixd": "nixd",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "webcord-src": "webcord-src"
       }
     },
     "systems": {
@@ -270,6 +271,23 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "webcord-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1695080620,
+        "narHash": "sha256-g9UJANYs5IlKAeRc27oNOfdD3uD3nrG5Ecp+AbbsXLE=",
+        "owner": "SpacingBat3",
+        "repo": "WebCord",
+        "rev": "588a26cc3e1fa68d9a3ec2a91e0d2ec46bea6f11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SpacingBat3",
+        "repo": "WebCord",
+        "rev": "588a26cc3e1fa68d9a3ec2a91e0d2ec46bea6f11",
         "type": "github"
       }
     },

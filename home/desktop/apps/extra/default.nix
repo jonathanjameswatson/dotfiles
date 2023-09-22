@@ -7,7 +7,6 @@
   ...
 }: {
   home.packages = with pkgs; [
-    webcord
     (
       element-desktop.overrideAttrs (oldAttrs: rec {
         desktopItem = oldAttrs.desktopItem.override {
