@@ -112,6 +112,10 @@ in {
         p10k segment -t "$(emacs_vterm_prompt)"
     }
 
+    function instant_prompt_example() {
+      prompt_vterm_prompt_end
+    }
+
     if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
         alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
 
