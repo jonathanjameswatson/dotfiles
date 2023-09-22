@@ -153,7 +153,10 @@
   programs.sway.enable = true;
   programs.sway.package = null;
 
-  services.dbus.enable = true;
+  services.dbus = {
+    enable = true;
+    implementation = "broker";
+  };
 
   systemd.services.greetd.serviceConfig = {
     Type = "idle";
