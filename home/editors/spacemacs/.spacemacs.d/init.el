@@ -696,8 +696,12 @@ before packages are loaded."
                (with-selected-window window
                  (split-window-below))))))))
 
-  (setq split-window-preferred-function 'split-window-sensibly-prefer-horizontal)
+  (setq split-window-preferred-function #'split-window-sensibly-prefer-horizontal)
   (setq split-width-threshold 120)
 
-  (setq vterm-buffer-name-string "%s")
+  ;; (setq vterm-buffer-name-string "%s")
+  ;; (defun vterm--set-shell-pop-title (buffer-name)
+  ;;   (when buffer-name
+  ;;     (setq shell-pop-last-shell-buffer-name buffer-name)))
+  ;; (advice-add 'vterm--set-title :filter-return #'vterm--set-shell-pop-title)
   )
