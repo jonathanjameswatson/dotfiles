@@ -103,9 +103,9 @@ in {
     ${commonShellInit}
 
     emacs_vterm_prompt () {
-        buffer_title_update=$(print -Pn "\e]2;%2~$\a")
+        # buffer_title_update=$(print -Pn "\e]2;%2~$\a")
         pwd_update=$(print -Pn "\e]51;A$(whoami)@$(hostname):$(pwd)\e")
-        print "%{$buffer_title_update$pwd_update%}\\"
+        print "%{$pwd_update%}\\"
     }
 
     prompt_vterm_prompt_end() {
