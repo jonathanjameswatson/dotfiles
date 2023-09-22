@@ -10,6 +10,8 @@
     tmux
     screen
 
+    xdg-utils
+
     zip
     unzip
 

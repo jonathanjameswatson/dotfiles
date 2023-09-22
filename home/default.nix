@@ -18,6 +18,7 @@ in {
     ./editors
     ./desktop
     ./cli
+    ./xdg
   ];
 
   config = {
@@ -35,7 +36,6 @@ in {
       nix-direnv.enable = true;
     };
 
-    xdg.userDirs.enable = true;
     services.mpd.enable = true;
 
     fonts.fontconfig.enable = true;

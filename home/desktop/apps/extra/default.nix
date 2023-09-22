@@ -7,8 +7,6 @@
   ...
 }: {
   home.packages = with pkgs; [
-    gnome.nautilus
-    gnome.eog
     amberol
     vlc
     gnome.baobab

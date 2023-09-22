@@ -75,6 +75,7 @@
     vim
     git
     greetd.tuigreet
+    shared-mime-info
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
