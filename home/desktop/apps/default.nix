@@ -3,6 +3,7 @@
     ./firefox
     ./flameshot
     ./webcord
+    ./element
     ./extra
   ];
 }
