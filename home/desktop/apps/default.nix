@@ -6,6 +6,8 @@
     ./element
     ./nautilus
     ./eog
+    ./amberol
+    ./vlc
     ./extra
   ];
 }

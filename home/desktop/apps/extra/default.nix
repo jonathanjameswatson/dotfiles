@@ -7,8 +7,6 @@
   ...
 }: {
   home.packages = with pkgs; [
-    amberol
-    vlc
     gnome.baobab
     gnome.gnome-system-monitor
     gnome.gnome-logs

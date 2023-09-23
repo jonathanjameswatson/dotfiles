@@ -8,12 +8,15 @@
 }: {
   programs.firefox.enable = true;
 
-  xdg.mimeApps.defaultApplications = {
-    "application/pdf" = "firefox.desktop";
-    "application/vnd.mozilla.xul+xml" = "firefox.desktop";
-    "application/xhtml+xml" = "firefox.desktop";
-    "text/html" = "firefox.desktop";
-    "x-scheme-handler/http" = "firefox.desktop";
-    "x-scheme-handler/https" = "firefox.desktop";
-  };
+  xdg.mimeApps.defaultApplications =
+    lib.jjw.attrsets.valuesWithName
+    [
+      "text/html"
+      "application/xhtml+xml"
+      "application/vnd.mozilla.xul+xml"
+      "x-scheme-handler/http"
+      "x-scheme-handler/https"
+      "application/pdf"
+    ]
+    "firefox.desktop";
 }
