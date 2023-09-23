@@ -52,9 +52,17 @@ in {
 
     config = rec {
       modifier = "Mod4";
-      input."*" = {
-        xkb_layout = "gb";
+
+      input = {
+        "*" = {
+          xkb_layout = "gb";
+        };
+
+        "type:keyboard" = {
+          xkb_options = "caps:escape";
+        };
       };
+
       terminal = "alacritty";
       inherit menu;
       bars = [
