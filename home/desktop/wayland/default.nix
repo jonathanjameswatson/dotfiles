@@ -20,7 +20,7 @@
     Install = {WantedBy = ["graphical-session.target"];};
 
     Service = {
-      ExecStart = "${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular";
+      ExecStart = "${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard both";
       Restart = "on-failure";
     };
   };
