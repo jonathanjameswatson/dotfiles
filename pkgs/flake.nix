@@ -18,6 +18,11 @@
       url = "github:nix-community/nix-zsh-completions/ae0c9ff7f709b929ba4beb8c50e4abfc74c1352a";
       flake = false;
     };
+
+    wl-clip-persist-src = {
+      url = "github:Linus789/wl-clip-persist/6ba11a2aa295d780f0b2e8f005cf176601d153b0";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -31,6 +36,7 @@
         git-acquire-src
         zsh-nix-shell-src
         nix-zsh-completions-src
+        wl-clip-persist-src
         ;
     };
   in

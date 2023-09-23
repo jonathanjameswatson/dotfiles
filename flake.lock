@@ -167,11 +167,12 @@
         "nixpkgs": [
           "nixpkgs"
         ],
+        "wl-clip-persist-src": "wl-clip-persist-src",
         "zsh-nix-shell-src": "zsh-nix-shell-src"
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-xJqcRiK2c8heB8/wZ2WZlzjoXxjx5Vw8SFYQzTqqxW0=",
+        "narHash": "sha256-ejm0DFUidpYIR+G/Vmp7ngtAfXaJxRe9e1e8i9cP1Gw=",
         "path": "./pkgs",
         "type": "path"
       },
@@ -310,6 +311,23 @@
         "owner": "SpacingBat3",
         "repo": "WebCord",
         "rev": "588a26cc3e1fa68d9a3ec2a91e0d2ec46bea6f11",
+        "type": "github"
+      }
+    },
+    "wl-clip-persist-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662562569,
+        "narHash": "sha256-wg4xEXLAZpWflFejP7ob4cnmRvo9d/0dL9hceG+RUr0=",
+        "owner": "Linus789",
+        "repo": "wl-clip-persist",
+        "rev": "6ba11a2aa295d780f0b2e8f005cf176601d153b0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Linus789",
+        "repo": "wl-clip-persist",
+        "rev": "6ba11a2aa295d780f0b2e8f005cf176601d153b0",
         "type": "github"
       }
     },
