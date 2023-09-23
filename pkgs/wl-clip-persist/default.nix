@@ -2,7 +2,6 @@
   lib,
   stdenv,
   rustPlatform,
-  fetchFromGitHub,
   pkg-config,
   wayland,
   wl-clip-persist-src,
