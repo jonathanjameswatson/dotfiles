@@ -1,5 +1,13 @@
-{
+rec {
   description = "NixOS and home-manager configurations";
+
+  nixConfig = {
+    extra-substituters = ["https://nix-community.cachix.org"];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     home-manager = {
@@ -11,7 +19,6 @@
       url = "path:./pkgs";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
       };
     };
 
@@ -19,7 +26,6 @@
       url = "github:jonathanjameswatson/flake-compat/8bf105319d44f6b9f0d764efa4fdef9f1cc9ba1c";
       flake = false;
     };
-    flake-utils.url = "github:numtide/flake-utils/ff7b65b44d01cf9ba6a71320833626af21126384";
 
     haumea = {
       url = "github:nix-community/haumea/v0.2.2";
@@ -32,11 +38,6 @@
 
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay/e10103d1d5e90f4c20136053ad3d4379fdcc2f33";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nixpkgs-stable.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
     };
 
     catppuccin-alacritty = {
@@ -54,7 +55,6 @@
     self,
     nixpkgs,
     home-manager,
-    flake-utils,
     haumea,
     jjw-pkgs,
     ...
@@ -72,7 +72,7 @@
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {inherit inputs outputs lib theme;};
+      specialArgs = {inherit inputs outputs nixConfig lib theme;};
       modules = [./nixos/configuration.nix];
     };
 
