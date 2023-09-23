@@ -98,6 +98,35 @@
         "type": "github"
       }
     },
+    "flameshot-wayland-patch": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-lLyWGHgDDMgyO2s75aaH5AATDBgkRBwd4j+mI3eUwPg=",
+        "type": "file",
+        "url": "https://github.com/flameshot-org/flameshot/commit/5fea9144501f7024344d6f29c480b000b2dcd5a6.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/flameshot-org/flameshot/commit/5fea9144501f7024344d6f29c480b000b2dcd5a6.patch"
+      }
+    },
+    "flameshot-wayland-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1656855741,
+        "narHash": "sha256-omyMN8d+g1uYsEw41KmpJCwOmVWLokEfbW19vIvG79w=",
+        "owner": "flameshot-org",
+        "repo": "flameshot",
+        "rev": "70be63d478a271da549597d69bd4868607c0a395",
+        "type": "github"
+      },
+      "original": {
+        "owner": "flameshot-org",
+        "repo": "flameshot",
+        "rev": "70be63d478a271da549597d69bd4868607c0a395",
+        "type": "github"
+      }
+    },
     "git-acquire-src": {
       "flake": false,
       "locked": {
@@ -162,6 +191,8 @@
         "flake-utils": [
           "flake-utils"
         ],
+        "flameshot-wayland-patch": "flameshot-wayland-patch",
+        "flameshot-wayland-src": "flameshot-wayland-src",
         "git-acquire-src": "git-acquire-src",
         "nix-zsh-completions-src": "nix-zsh-completions-src",
         "nixpkgs": [
@@ -172,7 +203,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-ejm0DFUidpYIR+G/Vmp7ngtAfXaJxRe9e1e8i9cP1Gw=",
+        "narHash": "sha256-ui5psohEv/FrBtmTeckdYAk3rX8wpn0WdOZi+y0pCv8=",
         "path": "./pkgs",
         "type": "path"
       },

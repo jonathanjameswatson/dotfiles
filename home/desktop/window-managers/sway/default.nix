@@ -78,7 +78,8 @@ in {
         "${modifier}+Shift+s" = "exec nag-graphical 'Suspend?' 'swaymsg exec systemctl suspend'";
         "${modifier}+x" = "exec ${lock}";
 
-        "Print" = "exec flameshot gui";
+        "Print" = "exec flameshot gui --raw | wl-copy";
+        "Shift+Print" = "exec flameshot gui";
       };
 
       gaps = {

@@ -23,6 +23,15 @@
       url = "github:Linus789/wl-clip-persist/6ba11a2aa295d780f0b2e8f005cf176601d153b0";
       flake = false;
     };
+
+    flameshot-wayland-src = {
+      url = "github:flameshot-org/flameshot/70be63d478a271da549597d69bd4868607c0a395";
+      flake = false;
+    };
+    flameshot-wayland-patch = {
+      url = "https://github.com/flameshot-org/flameshot/commit/5fea9144501f7024344d6f29c480b000b2dcd5a6.patch";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -37,6 +46,8 @@
         zsh-nix-shell-src
         nix-zsh-completions-src
         wl-clip-persist-src
+        flameshot-wayland-src
+        flameshot-wayland-patch
         ;
     };
   in

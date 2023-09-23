@@ -11,6 +11,7 @@
 in {
   services.flameshot = {
     enable = true;
+    package = pkgs.flameshot-wayland;
     settings = {
       General = {
         checkForUpdates = false;
