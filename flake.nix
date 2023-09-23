@@ -21,6 +21,11 @@
     };
     flake-utils.url = "github:numtide/flake-utils/ff7b65b44d01cf9ba6a71320833626af21126384";
 
+    haumea = {
+      url = "github:nix-community/haumea/v0.2.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixd = {
       url = "github:jonathanjameswatson/nixd/f1b6c54111237bc54cd346b1ede2164e6f50cd3b";
     };
@@ -49,6 +54,8 @@
     self,
     nixpkgs,
     home-manager,
+    flake-utils,
+    haumea,
     jjw-pkgs,
     ...
   } @ inputs: let
@@ -73,20 +80,24 @@
       "jonathan@nixos" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {inherit inputs outputs lib theme;};
-        modules = [
-          ./home
-          {
-            home = {
-              username = "jonathan";
-              homeDirectory = "/home/jonathan";
-              stateVersion = "23.05";
-            };
+        modules =
+          [
+            {
+              home = {
+                username = "jonathan";
+                homeDirectory = "/home/jonathan";
+                stateVersion = "23.05";
+              };
 
-            nixpkgs.overlays = [
-              jjw-pkgs.overlays.jjw
-            ];
-          }
-        ];
+              nixpkgs.overlays = [
+                jjw-pkgs.overlays.jjw
+              ];
+            }
+          ]
+          ++ lib.attrsets.collect builtins.isPath (haumea.lib.load {
+            src = ./home;
+            loader = [(haumea.lib.matchers.nix haumea.lib.loaders.path)];
+          });
       };
     };
   };

@@ -14,13 +14,6 @@
     (nerdfonts.override {fonts = ["SourceCodePro" "FiraCode" "CascadiaCode" "Noto"];})
   ];
 in {
-  imports = [
-    ./editors
-    ./desktop
-    ./cli
-    ./xdg
-  ];
-
   config = {
     nixpkgs.config = {
       allowUnfree = true;
