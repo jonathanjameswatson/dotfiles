@@ -179,4 +179,7 @@
     enableCompletion = true;
   };
   environment.pathsToLink = ["/share/zsh"];
+
+  services.devmon.enable = true;
+  programs.udevil.enable = true;
 }
