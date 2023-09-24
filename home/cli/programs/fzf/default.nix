@@ -4,13 +4,12 @@
   lib,
   config,
   pkgs,
-  theme,
   ...
 }: {
   programs.fzf = {
     enable = true;
     enableZshIntegration = false;
-    colors = with theme.palette; {
+    colors = with config.jjw.theme.palette; {
       bg = base;
       "bg+" = surface0;
       fg = text;

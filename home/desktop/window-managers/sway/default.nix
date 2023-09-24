@@ -4,7 +4,6 @@
   lib,
   config,
   pkgs,
-  theme,
   ...
 }: let
   menu = "wofi --show drun";
@@ -48,7 +47,7 @@ in {
     };
     xwayland = true;
 
-    extraConfigEarly = theme.swayVariables;
+    extraConfigEarly = lib.jjw.catppuccin.mkSwayVariables config.jjw.theme.palette;
 
     config = rec {
       modifier = "Mod4";
@@ -165,7 +164,7 @@ in {
   programs.swaylock = {
     enable = true;
     settings = {
-      color = theme.palette.base;
+      color = config.jjw.theme.palette.base;
     };
   };
 }

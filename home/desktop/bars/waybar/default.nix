@@ -4,7 +4,6 @@
   lib,
   config,
   pkgs,
-  theme,
   ...
 }: let
   waybarOverride = pkgs.waybar.overrideAttrs (oldAttrs: {
@@ -139,7 +138,7 @@ in {
     ];
 
     style = ''
-      ${theme.gtkCssVariables}
+      ${lib.jjw.catppuccin.mkGtkCssVariables config.jjw.theme.palette}
       ${builtins.readFile ./style.css}
     '';
   };

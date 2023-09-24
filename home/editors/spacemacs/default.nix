@@ -3,7 +3,6 @@
   lib,
   config,
   pkgs,
-  theme,
   ...
 }: let
   extraPackages = epkgs: with epkgs; [vterm];
@@ -63,7 +62,7 @@ in {
       sourceRoot = ".";
       installPhase = ''
         substituteInPlace .spacemacs.d/init.el \
-            --subst-var-by catppuccin-variant "${theme.variant}"
+            --subst-var-by catppuccin-variant "${config.jjw.theme.variant}"
         mkdir -p $out
         cp -a .spacemacs.d/. $out
       '';

@@ -61,10 +61,6 @@ rec {
   } @ inputs: let
     lib = nixpkgs.lib.extend (self: super: {jjw = import ./lib {lib = self;};} // home-manager.lib);
     inherit (self) outputs;
-    theme = lib.jjw.catppuccin.mkTheme {
-      variant = "macchiato";
-      accent = "blue";
-    };
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
   in {
     packages = jjw-pkgs.packages;
@@ -72,14 +68,14 @@ rec {
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {inherit inputs outputs nixConfig lib theme;};
+      specialArgs = {inherit inputs outputs nixConfig lib;};
       modules = [./nixos/configuration.nix];
     };
 
     homeConfigurations = {
       "jonathan@nixos" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = {inherit inputs outputs lib theme;};
+        extraSpecialArgs = {inherit inputs outputs lib;};
         modules =
           [
             {

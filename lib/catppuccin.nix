@@ -1,32 +1,26 @@
 {lib, ...}: rec {
-  paletteToFile = f: colorScheme:
-    lib.jjw.strings.unlines (lib.attrsets.mapAttrsToList (label: hex: f label hex) colorScheme);
-
-  mkThemeOverride = {
-    variant,
-    palette,
-    accent,
-    isDark,
-  }: {
-    inherit variant palette accent isDark;
-    gtkCssVariables = paletteToFile (label: hex: "@define-color ${label} ${hex};") palette;
-    swayVariables = paletteToFile (label: hex: "set \$${label} ${hex}") palette;
-  };
-
   mkTheme = {
     variant,
     accent,
-  }:
-    mkThemeOverride {
-      inherit variant accent;
-      isDark = variant != "latte";
-      palette = palettes.${variant};
-    };
+  }: {
+    inherit variant accent;
+    isDark = variant != "latte";
+    palette = palettes.${variant};
+  };
 
   themeMode = {isDark, ...}:
     if isDark
     then "dark"
     else "light";
+
+  paletteToFile = f: colorScheme:
+    lib.jjw.strings.unlines (lib.attrsets.mapAttrsToList (label: hex: f label hex) colorScheme);
+
+  mkGtkCssVariables = palette:
+    paletteToFile (label: hex: "@define-color ${label} ${hex};") palette;
+
+  mkSwayVariables = palette:
+    paletteToFile (label: hex: "set \$${label} ${hex}") palette;
 
   palettes = {
     latte = {

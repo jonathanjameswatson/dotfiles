@@ -4,9 +4,9 @@
   lib,
   config,
   pkgs,
-  theme,
   ...
 }: let
+  inherit (config.jjw) theme;
   titleTheme = lib.mapAttrs (name: value:
     if lib.isString value
     then lib.jjw.strings.toTitle value

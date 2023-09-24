@@ -4,7 +4,6 @@
   lib,
   config,
   pkgs,
-  theme,
   ...
 }: {
   home.packages = with pkgs; [
@@ -16,7 +15,7 @@
   '';
 
   xdg.configFile."swaync/style.css".text = ''
-    ${theme.gtkCssVariables}
+    ${lib.jjw.catppuccin.mkGtkCssVariables config.jjw.theme.palette}
     ${builtins.readFile ./style.css}
   '';
 }

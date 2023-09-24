@@ -4,7 +4,6 @@
   lib,
   config,
   pkgs,
-  theme,
   ...
 }: let
   savePath = "${config.xdg.userDirs.pictures}/Screenshots";
@@ -13,15 +12,15 @@ in {
     enable = true;
     package = pkgs.flameshot-wayland;
     settings = {
-      General = {
+      General = with config.jjw.theme.palette; {
         checkForUpdates = false;
         disabledTrayIcon = true;
         drawThickness = 2;
         inherit savePath;
         showHelp = false;
         showStartupLaunchMessage = false;
-        uiColor = theme.palette.mauve;
-        contrastUiColor = theme.palette.blue;
+        uiColor = mauve;
+        contrastUiColor = blue;
       };
     };
   };
