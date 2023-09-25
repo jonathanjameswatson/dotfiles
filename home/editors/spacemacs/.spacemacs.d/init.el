@@ -649,7 +649,30 @@ before packages are loaded."
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
 
   (setq evil-want-minibuffer t)
-  (evil-define-key 'normal global-map (kbd "<escape>") 'keyboard-escape-quit)
+  (defun keyboard-escape-quit-custom ()
+    (interactive)
+    (cond ((eq last-command 'mode-exited) nil)
+	        ((region-active-p)
+	         (deactivate-mark))
+	        ((> (minibuffer-depth) 0)
+	         (abort-recursive-edit))
+	        (current-prefix-arg
+	         nil)
+	        ((> (recursion-depth) 0)
+	         (exit-recursive-edit))
+	        (buffer-quit-function
+	         (funcall buffer-quit-function))
+	        ((string-match "^ \\*" (buffer-name (current-buffer)))
+	         (bury-buffer))))
+
+  (evil-define-key 'normal global-map (kbd "<escape>") #'keyboard-escape-quit-custom)
+  (defun transient-bind-escape-to-quit ()
+    (keymap-set transient-base-map   "<escape>" #'transient-quit-one)
+    (keymap-set transient-sticky-map "<escape>" #'transient-quit-seq)
+    (setq transient-substitute-key-function
+          #'transient-rebind-quit-commands))
+  (with-eval-after-load 'transient
+    (transient-bind-escape-to-quit))
 
   (direnv-mode)
 
