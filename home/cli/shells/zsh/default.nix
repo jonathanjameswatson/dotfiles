@@ -9,6 +9,7 @@
     enable = true;
 
     enableAutosuggestions = true;
+    shellAliases = config.jjw.shells.aliases;
 
     oh-my-zsh = {
       enable = true;
