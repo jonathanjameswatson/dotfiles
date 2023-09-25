@@ -4,16 +4,7 @@
   config,
   pkgs,
   ...
-}: let
-  fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    font-awesome
-    liberation_ttf
-    (nerdfonts.override {fonts = ["SourceCodePro" "FiraCode" "CascadiaCode" "Noto"];})
-  ];
-in {
+}: {
   config = {
     nixpkgs.config = {
       allowUnfree = true;
@@ -30,8 +21,5 @@ in {
     };
 
     services.mpd.enable = true;
-
-    fonts.fontconfig.enable = true;
-    home.packages = fonts;
   };
 }
