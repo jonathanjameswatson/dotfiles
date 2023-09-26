@@ -21,7 +21,7 @@
   boot.kernelParams = ["quiet" "splash"];
   boot.plymouth.enable = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "blue"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

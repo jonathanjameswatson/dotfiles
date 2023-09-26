@@ -73,7 +73,7 @@ rec {
     };
 
     homeConfigurations = {
-      "jonathan@nixos" = home-manager.lib.homeManagerConfiguration {
+      "jonathan@blue" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {inherit inputs outputs lib;};
         modules =
