@@ -7,7 +7,6 @@
   ...
 }: {
   programs.fzf = {
-    enable = true;
     enableZshIntegration = false;
     colors = with config.jjw.theme.palette; {
       bg = base;

@@ -8,6 +8,7 @@
   jjw = {
     cli = {
       shells.enableAll = true;
+      programs.enableAll = true;
     };
 
     desktop = {

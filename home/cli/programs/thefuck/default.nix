@@ -5,13 +5,26 @@
   config,
   pkgs,
   ...
-}: {
-  home.packages = with pkgs; [
-    thefuck
-  ];
+}: let
+  cfg = config.programs.thefuck;
+in {
+  options.programs.thefuck = let
+    inherit (lib) types mkOption;
+  in {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
+  };
 
-  xdg.configFile.thefuck = {
-    source = ./config;
-    recursive = true;
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      thefuck
+    ];
+
+    xdg.configFile.thefuck = {
+      source = ./config;
+      recursive = true;
+    };
   };
 }
