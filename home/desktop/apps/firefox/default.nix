@@ -6,9 +6,7 @@
   pkgs,
   ...
 }: {
-  programs.firefox.enable = true;
-
-  xdg.mimeApps = {
+  xdg.mimeApps = lib.mkIf config.programs.firefox.enable {
     associations.added = {
       "application/pdf" = "firefox.desktop";
     };

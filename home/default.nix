@@ -5,7 +5,10 @@
   pkgs,
   ...
 }: {
-  jjw.desktop.environment = "sway";
+  jjw.desktop = {
+    environment = "sway";
+    apps.enableAll = true;
+  };
 
   programs.direnv.enable = true;
 }
