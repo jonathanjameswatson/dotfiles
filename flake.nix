@@ -66,7 +66,7 @@ rec {
     packages = jjw-pkgs.packages;
     overlays = jjw-pkgs.overlays;
 
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.blue = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit inputs outputs nixConfig lib;};
       modules = [./nixos/configuration.nix];
