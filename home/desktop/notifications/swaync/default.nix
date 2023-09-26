@@ -5,17 +5,30 @@
   config,
   pkgs,
   ...
-}: {
-  home.packages = with pkgs; [
-    swaynotificationcenter
-  ];
+}: let
+  cfg = config.jjw.desktop.notifications.swaync;
+in {
+  options.jjw.desktop.notifications.swaync = let
+    inherit (lib) types mkOption;
+  in {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
+  };
 
-  wayland.windowManager.sway.extraConfig = ''
-    exec swaync
-  '';
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      swaynotificationcenter
+    ];
 
-  xdg.configFile."swaync/style.css".text = ''
-    ${lib.jjw.catppuccin.mkGtkCssVariables config.jjw.theme.palette}
-    ${builtins.readFile ./style.css}
-  '';
+    wayland.windowManager.sway.extraConfig = ''
+      exec swaync
+    '';
+
+    xdg.configFile."swaync/style.css".text = ''
+      ${lib.jjw.catppuccin.mkGtkCssVariables config.jjw.theme.palette}
+      ${builtins.readFile ./style.css}
+    '';
+  };
 }

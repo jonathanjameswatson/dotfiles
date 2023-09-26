@@ -6,14 +6,14 @@
   pkgs,
   ...
 }: let
-  cfg = config.jjw.fonts;
+  cfg = config.jjw.desktop.fonts;
 in {
-  options.jjw.fonts = let
+  options.jjw.desktop.fonts = let
     inherit (lib) types mkOption;
   in {
     enable = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
     };
     packages = mkOption {
       type = types.listOf types.package;
@@ -42,7 +42,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    jjw.fonts = {
+    jjw.desktop.fonts = {
       packages = with pkgs;
         lib.optionals cfg.enableEmojis [
           noto-fonts-emoji

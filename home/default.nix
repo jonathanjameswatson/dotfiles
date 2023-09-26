@@ -5,6 +5,7 @@
   pkgs,
   ...
 }: {
+  jjw.desktop.environment = "sway";
+
   programs.direnv.enable = true;
-  services.mpd.enable = true;
 }
