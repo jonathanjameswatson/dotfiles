@@ -26,6 +26,7 @@ in {
       firefox.enable = true;
       nautilus.enable = true;
       vlc.enable = true;
+      webcord.enable = true;
       extra.enable = true;
     };
 
