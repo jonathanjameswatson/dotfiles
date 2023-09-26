@@ -727,4 +727,7 @@ before packages are loaded."
   ;;   (when buffer-name
   ;;     (setq shell-pop-last-shell-buffer-name buffer-name)))
   ;; (advice-add 'vterm--set-title :filter-return #'vterm--set-shell-pop-title)
+
+  (setq counsel-rg-base-command
+        "rg --max-columns 240 --with-filename --no-heading --line-number --color never --hidden %s")
   )
