@@ -7,7 +7,6 @@
   ...
 }: {
   programs.bash = {
-    enable = true;
-    shellAliases = config.jjw.shells.aliases;
+    shellAliases = config.jjw.cli.shells.aliases;
   };
 }
