@@ -13,6 +13,7 @@
 
     editors = {
       enableAll = true;
+      languageServers.enableAll = true;
     };
 
     desktop = {
