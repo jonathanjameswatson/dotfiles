@@ -12,7 +12,7 @@
     };
 
     defaultApplications =
-      lib.jjw.attrsets.valuesWithName
+      lib.jjw.attrsets.namesWithValue
       [
         "text/html"
         "application/xhtml+xml"

@@ -23,7 +23,7 @@ in {
     ];
 
     xdg.mimeApps.defaultApplications =
-      lib.jjw.attrsets.valuesWithName
+      lib.jjw.attrsets.namesWithValue
       [
         "inode/directory"
         "application/x-7z-compressed"

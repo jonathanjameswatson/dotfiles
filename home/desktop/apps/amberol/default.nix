@@ -23,7 +23,7 @@ in {
     ];
 
     xdg.mimeApps.defaultApplications =
-      lib.jjw.attrsets.valuesWithName
+      lib.jjw.attrsets.namesWithValue
       (map
         (audioType: "audio/${audioType}")
         [

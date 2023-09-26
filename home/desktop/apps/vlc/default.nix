@@ -23,7 +23,7 @@ in {
     ];
 
     xdg.mimeApps.defaultApplications =
-      lib.jjw.attrsets.valuesWithName
+      lib.jjw.attrsets.namesWithValue
       [
         "application/ogg"
         "application/x-ogg"

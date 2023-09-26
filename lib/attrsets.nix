@@ -1,6 +1,6 @@
 {lib, ...}: {
-  valuesWithName = values: name:
+  namesWithValue = names: value:
     builtins.listToAttrs (
-      map (lib.attrsets.nameValuePair name) values
+      map (name: {inherit name value;}) names
     );
 }
