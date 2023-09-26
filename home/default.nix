@@ -15,5 +15,10 @@
       environment = "sway";
       apps.enableAll = true;
     };
+
+    xdg = {
+      enableUserDirs = true;
+      enableMime = true;
+    };
   };
 }
