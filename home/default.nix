@@ -16,6 +16,4 @@
       apps.enableAll = true;
     };
   };
-
-  programs.direnv.enable = true;
 }
