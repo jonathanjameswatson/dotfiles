@@ -11,6 +11,10 @@
       programs.enableAll = true;
     };
 
+    editors = {
+      enableAll = true;
+    };
+
     desktop = {
       environment = "sway";
       apps.enableAll = true;
