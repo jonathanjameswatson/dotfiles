@@ -72,29 +72,49 @@ rec {
       modules = [./nixos/configuration.nix];
     };
 
-    homeConfigurations = {
-      "jonathan@blue" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {inherit inputs outputs lib;};
-        modules =
-          [
-            {
-              home = {
-                username = "jonathan";
-                homeDirectory = "/home/jonathan";
-                stateVersion = "23.05";
-              };
+    homeConfigurations = builtins.listToAttrs (
+      lib.concatMap (
+        hostNameValuePair: let
+          host = hostNameValuePair.name;
+          inherit (hostNameValuePair.value) home;
+        in
+          map (
+            userNameValuePair: let
+              user = userNameValuePair.name;
+              config = userNameValuePair.value.default;
+            in {
+              name = "${user}@${host}";
+              value = home-manager.lib.homeManagerConfiguration {
+                inherit pkgs;
+                extraSpecialArgs = {inherit inputs outputs lib;};
+                modules =
+                  [
+                    config
+                    {
+                      home = {
+                        username = user;
+                        homeDirectory = "/home/${user}";
+                        stateVersion = "23.05";
+                      };
 
-              nixpkgs.overlays = [
-                jjw-pkgs.overlays.jjw
-              ];
+                      nixpkgs.overlays = [
+                        jjw-pkgs.overlays.jjw
+                      ];
+                    }
+                  ]
+                  ++ lib.attrsets.collect builtins.isPath (haumea.lib.load {
+                    src = ./home;
+                    loader = haumea.lib.loaders.path;
+                  });
+              };
             }
-          ]
-          ++ lib.attrsets.collect builtins.isPath (haumea.lib.load {
-            src = ./home;
-            loader = [(haumea.lib.matchers.nix haumea.lib.loaders.path)];
-          });
-      };
-    };
+          )
+          (lib.jjw.attrsets.attrsToList home)
+      )
+      (lib.jjw.attrsets.attrsToList (haumea.lib.load {
+        src = ./hosts;
+        loader = haumea.lib.loaders.path;
+      }))
+    );
   };
 }
