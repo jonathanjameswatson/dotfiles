@@ -21,21 +21,15 @@ in {
     };
   };
 
-  config = lib.mkMerge [
+  config.xdg = lib.mkMerge [
     (lib.mkIf cfg.enableUserDirs {
-      xdg.userDirs.enable = true;
+      userDirs.enable = true;
     })
 
     (lib.mkIf cfg.enableMime {
-      home.packages = with pkgs; [
-        shared-mime-info
-      ];
-
-      xdg = {
-        mime.enable = true;
-        mimeApps.enable = true;
-        configFile."mimeapps.list".force = true;
-      };
+      mime.enable = true;
+      mimeApps.enable = true;
+      configFile."mimeapps.list".force = true;
     })
   ];
 }

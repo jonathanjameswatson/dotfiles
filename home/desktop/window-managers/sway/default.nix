@@ -192,6 +192,8 @@ in {
           export _JAVA_AWT_WM_NONREPARENTING=1=1
 
           source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+
+          ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
         '';
       };
 
