@@ -62,28 +62,37 @@ rec {
     lib = nixpkgs.lib.extend (self: super: {jjw = import ./lib {lib = self;};} // home-manager.lib);
     inherit (self) outputs;
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    hosts = haumea.lib.load {
+      src = ./hosts;
+      loader = haumea.lib.loaders.path;
+    };
   in {
     packages = jjw-pkgs.packages;
     overlays = jjw-pkgs.overlays;
 
-    nixosConfigurations.blue = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {inherit inputs outputs nixConfig lib;};
-      modules = [./nixos/configuration.nix];
-    };
+    nixosConfigurations =
+      lib.mapAttrs (
+        hostName: host:
+          nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = {inherit inputs outputs nixConfig lib;};
+            modules = [host.nixos.configuration];
+          }
+      )
+      hosts;
 
     homeConfigurations = builtins.listToAttrs (
       lib.concatMap (
         hostNameValuePair: let
-          host = hostNameValuePair.name;
+          hostName = hostNameValuePair.name;
           inherit (hostNameValuePair.value) home;
         in
           map (
             userNameValuePair: let
-              user = userNameValuePair.name;
+              username = userNameValuePair.name;
               config = userNameValuePair.value.default;
             in {
-              name = "${user}@${host}";
+              name = "${username}@${hostName}";
               value = home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
                 extraSpecialArgs = {inherit inputs outputs lib;};
@@ -92,8 +101,8 @@ rec {
                     config
                     {
                       home = {
-                        username = user;
-                        homeDirectory = "/home/${user}";
+                        inherit username;
+                        homeDirectory = "/home/${username}";
                         stateVersion = "23.05";
                       };
 
@@ -109,12 +118,13 @@ rec {
               };
             }
           )
-          (lib.jjw.attrsets.attrsToList home)
+          (
+            lib.jjw.attrsets.attrsToList (
+              lib.jjw.attrsets.attrsToList home
+            )
+          )
       )
-      (lib.jjw.attrsets.attrsToList (haumea.lib.load {
-        src = ./hosts;
-        loader = haumea.lib.loaders.path;
-      }))
+      hosts
     );
   };
 }
