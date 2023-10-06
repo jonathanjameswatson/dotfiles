@@ -23,6 +23,10 @@ in {
       type = types.bool;
       default = true;
     };
+    enableBattery = mkOption {
+      type = types.bool;
+      default = true;
+    };
   };
 
   config = lib.mkIf cfg.enable (
@@ -75,6 +79,9 @@ in {
               ]
               ++ [
                 "clock"
+              ]
+              ++ lib.optionals cfg.enableBattery [
+                "battery"
               ]
               ++ lib.optionals config.jjw.desktop.notifications.swaync.enable [
                 "custom/notification"

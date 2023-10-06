@@ -47,6 +47,7 @@ window#waybar > .horizontal {
 #bluetooth,
 #pulseaudio,
 #clock,
+#battery,
 #custom-notification,
 #tray {
     border: 1px solid @blue;
@@ -80,6 +81,11 @@ window#waybar > .horizontal {
 #clock {
     color: @lavender;
     border-color: @lavender;
+}
+
+#battery {
+    color: @teal;
+    border-color: @teal;
 }
 
 #custom-notification {

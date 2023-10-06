@@ -20,6 +20,7 @@
     desktop = {
       environment = "sway";
       apps.enableAll = true;
+      bars.waybar.enableBattery = false;
     };
 
     xdg = {
