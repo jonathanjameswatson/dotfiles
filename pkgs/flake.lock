@@ -19,7 +19,36 @@
         "type": "github"
       }
     },
-    "git-acquire": {
+    "flameshot-wayland-patch": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-lLyWGHgDDMgyO2s75aaH5AATDBgkRBwd4j+mI3eUwPg=",
+        "type": "file",
+        "url": "https://github.com/flameshot-org/flameshot/commit/5fea9144501f7024344d6f29c480b000b2dcd5a6.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/flameshot-org/flameshot/commit/5fea9144501f7024344d6f29c480b000b2dcd5a6.patch"
+      }
+    },
+    "flameshot-wayland-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1656855741,
+        "narHash": "sha256-omyMN8d+g1uYsEw41KmpJCwOmVWLokEfbW19vIvG79w=",
+        "owner": "flameshot-org",
+        "repo": "flameshot",
+        "rev": "70be63d478a271da549597d69bd4868607c0a395",
+        "type": "github"
+      },
+      "original": {
+        "owner": "flameshot-org",
+        "repo": "flameshot",
+        "rev": "70be63d478a271da549597d69bd4868607c0a395",
+        "type": "github"
+      }
+    },
+    "git-acquire-src": {
       "flake": false,
       "locked": {
         "lastModified": 1670400094,
@@ -36,13 +65,30 @@
         "type": "github"
       }
     },
+    "nix-zsh-completions-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694713624,
+        "narHash": "sha256-n8/zYO/x9DMKa03SlFQz7vP1jX4tpfQNmJaNjOCpJgQ=",
+        "owner": "nix-community",
+        "repo": "nix-zsh-completions",
+        "rev": "ae0c9ff7f709b929ba4beb8c50e4abfc74c1352a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-zsh-completions",
+        "rev": "ae0c9ff7f709b929ba4beb8c50e4abfc74c1352a",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1694426803,
-        "narHash": "sha256-osusXQo0zkEqs502SNMffsKp1O9evpDM54A37MuyT2Q=",
+        "lastModified": 1696374741,
+        "narHash": "sha256-gt8B3G0ryizT9HSB4cCO8QoxdbsHnrQH+/BdKxOwqF0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9a74ffb2ca1fc91c6ccc48bd3f8cbc1501bf7b8a",
+        "rev": "8a4c17493e5c39769f79117937c79e1c88de6729",
         "type": "github"
       },
       "original": {
@@ -55,8 +101,13 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "git-acquire": "git-acquire",
-        "nixpkgs": "nixpkgs"
+        "flameshot-wayland-patch": "flameshot-wayland-patch",
+        "flameshot-wayland-src": "flameshot-wayland-src",
+        "git-acquire-src": "git-acquire-src",
+        "nix-zsh-completions-src": "nix-zsh-completions-src",
+        "nixpkgs": "nixpkgs",
+        "wl-clip-persist-src": "wl-clip-persist-src",
+        "zsh-nix-shell-src": "zsh-nix-shell-src"
       }
     },
     "systems": {
@@ -71,6 +122,40 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "wl-clip-persist-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662562569,
+        "narHash": "sha256-wg4xEXLAZpWflFejP7ob4cnmRvo9d/0dL9hceG+RUr0=",
+        "owner": "Linus789",
+        "repo": "wl-clip-persist",
+        "rev": "6ba11a2aa295d780f0b2e8f005cf176601d153b0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Linus789",
+        "repo": "wl-clip-persist",
+        "rev": "6ba11a2aa295d780f0b2e8f005cf176601d153b0",
+        "type": "github"
+      }
+    },
+    "zsh-nix-shell-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693571504,
+        "narHash": "sha256-dE86o8LfEfswIIP9r0BJpxWvkoYdu7VQcJOKTLYqtWs=",
+        "owner": "chisui",
+        "repo": "zsh-nix-shell",
+        "rev": "406ce293f5302fdebca56f8c59ec615743260604",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chisui",
+        "repo": "zsh-nix-shell",
+        "rev": "406ce293f5302fdebca56f8c59ec615743260604",
         "type": "github"
       }
     }
