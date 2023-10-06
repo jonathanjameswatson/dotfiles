@@ -119,12 +119,10 @@ rec {
             }
           )
           (
-            lib.jjw.attrsets.attrsToList (
-              lib.jjw.attrsets.attrsToList home
-            )
+            lib.jjw.attrsets.attrsToList home
           )
       )
-      hosts
+      (lib.jjw.attrsets.attrsToList hosts)
     );
   };
 }
