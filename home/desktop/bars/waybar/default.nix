@@ -119,6 +119,14 @@ in {
               on-click-right = "${toggleBluetooth}/bin/toggle-bluetooth";
             };
 
+            battery = {
+              interval = 10;
+              format = "{capacity}%";
+              format-charging = " {capacity}%";
+              format-plugged = "  {capacity}%";
+              format-full = " {capacity}%";
+            };
+
             "custom/notification" = {
               format = "{icon}";
               format-icons = let
