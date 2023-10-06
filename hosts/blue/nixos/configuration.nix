@@ -109,7 +109,7 @@
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     trusted-substituters = nixConfig.extra-substituters;
-    inherit (nixConfig) extra-trusted-public-keys;
+    trusted-public-keys = nixConfig.extra-trusted-public-keys;
   };
 
   security = {
