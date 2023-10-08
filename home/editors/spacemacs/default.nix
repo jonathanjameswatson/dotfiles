@@ -44,6 +44,10 @@ in {
         enable = true;
         package = with pkgs; (emacsPackagesFor emacs-unstable-pgtk).emacsWithPackages extraPackages;
         defaultEditor = true;
+        startWithUserSession =
+          if config.jjw.desktop.environment != "none"
+          then "graphical"
+          else true;
         client.enable = true;
       };
 

@@ -730,4 +730,6 @@ before packages are loaded."
 
   (setq counsel-rg-base-command
         "rg --max-columns 240 --with-filename --no-heading --line-number --color never --hidden %s")
+
+  (fset 'evil-visual-update-x-selection 'ignore)
   )
