@@ -625,7 +625,6 @@ before packages are loaded."
   (display-time-mode 1)
 
   (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
-  (define-key ivy-minibuffer-map (kbd "^") 'ivy-backward-delete-char)
   (define-key ivy-minibuffer-map (kbd "DEL") 'ivy-backward-delete-char)
 
   (setq require-final-newline t)
