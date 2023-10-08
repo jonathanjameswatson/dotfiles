@@ -88,6 +88,15 @@ in {
             "type:keyboard" = {
               xkb_options = "caps:escape";
             };
+
+            "type:touchpad" = {
+              tap = "enabled";
+              dwt = "enabled";
+              scroll_method = "two_finger";
+              middle_emulation = "disabled";
+              natural_scroll = "enabled";
+              click_method = "clickfinger";
+            };
           };
 
           terminal = cfg.terminalCommand;
