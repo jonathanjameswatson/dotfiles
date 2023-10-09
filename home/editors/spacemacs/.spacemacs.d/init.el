@@ -650,6 +650,7 @@ before packages are loaded."
   (setq evil-want-minibuffer t)
   (defun keyboard-escape-quit-custom ()
     (interactive)
+    (company-abort)
     (cond ((eq last-command 'mode-exited) nil)
 	        ((region-active-p)
 	         (deactivate-mark))
