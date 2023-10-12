@@ -21,7 +21,7 @@ in {
     nixpkgs.overlays = [
       (_: prev: {
         webcord = prev.webcord.overrideAttrs (oldAttrs: rec {
-          name = "webcord-4.4.1";
+          name = "webcord-4.4.2";
           src = inputs.webcord-src;
           npmDeps = pkgs.fetchNpmDeps {
             inherit src;
