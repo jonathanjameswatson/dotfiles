@@ -387,17 +387,17 @@
     "webcord-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1695080620,
-        "narHash": "sha256-g9UJANYs5IlKAeRc27oNOfdD3uD3nrG5Ecp+AbbsXLE=",
+        "lastModified": 1696766250,
+        "narHash": "sha256-Se73TANnZUvbSe3v4woofRzYARP2h2HjO1kv/5sDRyA=",
         "owner": "SpacingBat3",
         "repo": "WebCord",
-        "rev": "588a26cc3e1fa68d9a3ec2a91e0d2ec46bea6f11",
+        "rev": "7ca8370fdc812323f8e17a69fbe6b184be7f4a9f",
         "type": "github"
       },
       "original": {
         "owner": "SpacingBat3",
         "repo": "WebCord",
-        "rev": "588a26cc3e1fa68d9a3ec2a91e0d2ec46bea6f11",
+        "rev": "7ca8370fdc812323f8e17a69fbe6b184be7f4a9f",
         "type": "github"
       }
     },

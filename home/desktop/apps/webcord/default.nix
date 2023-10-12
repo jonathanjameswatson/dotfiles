@@ -26,7 +26,7 @@ in {
           npmDeps = pkgs.fetchNpmDeps {
             inherit src;
             name = "${name}-npm-deps";
-            hash = "sha256-SSlSLZs97LDtL7OyfCtEGZjDVfsn5KKUgRNyL8J5M5g=";
+            hash = "sha256-O3eFtgDO+2A7PygrLj6iT/rptnG+oR5tD2lhhz6Iwug=";
           };
         });
       })
