@@ -114,7 +114,7 @@ in {
         # End vterm configuration
       '';
 
-      programs.zsh.initExtra = ''
+      programs.zsh.initExtra = lib.mkAfter ''
         # Extra zsh shell configuration for vterm in emacs
 
         ${commonShellInit}
@@ -129,7 +129,7 @@ in {
             p10k segment -t "$(emacs_vterm_prompt)"
         }
 
-        function instant_prompt_example() {
+        function instant_prompt_vterm_prompt_end() {
           prompt_vterm_prompt_end
         }
 
@@ -139,13 +139,14 @@ in {
             POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
                 "''${POWERLEVEL9K_LEFT_PROMPT_ELEMENTS[@]}"
                 vterm_prompt_end
-                                                                   )
+            )
             POWERLEVEL9K_LEFT_SEGMENT_END_SEPARATOR=
 
             if [[ ''${POWERLEVEL9K_TRANSIENT_PROMPT:-off} != 'off' ]]; then
                 POWERLEVEL9K_TRANSIENT_PROMPT=off
-                p10k reload
             fi
+
+            p10k reload
         fi
 
         # End vterm configuration
