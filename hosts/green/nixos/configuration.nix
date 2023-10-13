@@ -150,10 +150,17 @@
     settings = {
       default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd sway";
-        # user = "greeter";
+        user = "greeter";
       };
     };
   };
+  system.activationScripts.mkTuiGreetCache = let
+    tuiGreetCache = "/var/cache/tuigreet";
+  in ''
+    mkdir -p ${tuiGreetCache}
+    chown greeter:greeter ${tuiGreetCache}
+    chmod 0755 ${tuiGreetCache}
+  '';
 
   programs.sway.enable = true;
   programs.sway.package = null;
