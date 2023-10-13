@@ -6,6 +6,8 @@
   pkgs,
   ...
 }: {
+  home.stateVersion = "23.05";
+
   jjw = {
     cli = {
       shells.enableAll = true;

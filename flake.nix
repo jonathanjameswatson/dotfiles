@@ -103,7 +103,6 @@ rec {
                       home = {
                         inherit username;
                         homeDirectory = "/home/${username}";
-                        stateVersion = "23.05";
                       };
 
                       nixpkgs.overlays = [
