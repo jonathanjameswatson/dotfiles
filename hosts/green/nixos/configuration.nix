@@ -145,22 +145,11 @@
 
   programs.dconf.enable = true;
 
-  services.greetd = {
+  jjw.greeters.greetd = {
     enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd sway";
-        user = "greeter";
-      };
-    };
+    type = "tuigreet";
+    enableSilence = false;
   };
-  system.activationScripts.mkTuiGreetCache = let
-    tuiGreetCache = "/var/cache/tuigreet";
-  in ''
-    mkdir -p ${tuiGreetCache}
-    chown greeter:greeter ${tuiGreetCache}
-    chmod 0755 ${tuiGreetCache}
-  '';
 
   programs.sway.enable = true;
   programs.sway.package = null;
@@ -169,16 +158,6 @@
     enable = true;
     implementation = "broker";
   };
-
-  # systemd.services.greetd.serviceConfig = {
-  #   Type = "idle";
-  #   StandardInput = "tty";
-  #   StandardOutput = "tty";
-  #   StandardError = "journal";
-  #   TTYReset = true;
-  #   TTYVHangup = true;
-  #   TTYVTDisallocate = true;
-  # };
 
   programs.zsh = {
     enable = true;

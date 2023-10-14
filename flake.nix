@@ -66,6 +66,11 @@ rec {
       src = ./hosts;
       loader = haumea.lib.loaders.path;
     };
+    allModulePathsIn = path:
+      lib.attrsets.collect builtins.isPath (haumea.lib.load {
+        src = path;
+        loader = haumea.lib.loaders.path;
+      });
   in {
     packages = jjw-pkgs.packages;
     overlays = jjw-pkgs.overlays;
@@ -76,7 +81,9 @@ rec {
           nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = {inherit inputs outputs nixConfig lib;};
-            modules = [host.nixos.configuration];
+            modules =
+              [host.nixos.configuration]
+              ++ allModulePathsIn ./nixos;
           }
       )
       hosts;
@@ -110,10 +117,7 @@ rec {
                       ];
                     }
                   ]
-                  ++ lib.attrsets.collect builtins.isPath (haumea.lib.load {
-                    src = ./home;
-                    loader = haumea.lib.loaders.path;
-                  });
+                  ++ allModulePathsIn ./home;
               };
             }
           )
