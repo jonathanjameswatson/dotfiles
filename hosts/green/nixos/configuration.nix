@@ -6,18 +6,66 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  plymouth =
+    pkgs.plymouth.override {systemd = config.boot.initrd.systemd.package;};
+in {
   imports = [
     ./hardware-configuration.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # boot.initrd.systemd.enable = true;
-  # boot.consoleLogLevel = 0;
-  # boot.initrd.verbose = false;
-  # boot.kernelParams = ["quiet" "splash"];
-  # boot.plymouth.enable = true;
+  boot = let
+    kernelModules = [
+      "drm_kms_helper"
+      "intel_agp"
+      "i915"
+    ];
+  in {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
+    initrd = {
+      systemd.enable = true;
+      inherit kernelModules;
+      availableKernelModules = kernelModules;
+      verbose = false;
+    };
+
+    consoleLogLevel = 3;
+
+    kernelParams = [
+      "fbcon=nodefer"
+      "logo.nologo"
+      "quiet"
+      "rd.systemd.show_status=auto"
+      "rd.udev.log_level=3"
+      "vt.global_cursor_default=0"
+    ];
+    inherit kernelModules;
+    blacklistedKernelModules = ["snd_pcsp" "nouveau"];
+
+    plymouth = let
+      theme = "hexa_retro";
+    in {
+      enable = true;
+      themePackages = [
+        (pkgs.adi1090x-plymouth-themes.override {selected_themes = [theme];})
+      ];
+      inherit theme;
+      extraConfig = ''
+        ShowDelay=0
+      '';
+    };
+  };
+
+  powerManagement.powerDownCommands = ''
+    ${lib.getExe plymouth} --show-splash
+  '';
+  powerManagement.resumeCommands = ''
+    ${lib.getExe plymouth} --quit
+  '';
 
   networking.hostName = "green";
 
@@ -58,6 +106,7 @@
   hardware.opengl = {
     enable = true;
     driSupport = true;
+    driSupport32Bit = true;
   };
 
   xdg.portal = {
@@ -85,7 +134,7 @@
   jjw.greeters.greetd = {
     enable = true;
     type = "tuigreet";
-    enableSilence = false;
+    enableSilence = true;
   };
 
   programs.sway.enable = true;
