@@ -41,7 +41,7 @@ in {
       jjw.cli.shells = {
         aliases = lib.mkMerge [
           (lib.mkIf cfg.enableNixSwitchAlias {
-            nix-switch = "sudo nixos-rebuild switch --flake ~/dotfiles";
+            nix-switch = "sudo nixos-rebuild switch --flake ~/dotfiles --update-input jjw-pkgs";
           })
 
           (lib.mkIf cfg.enableHomeSwitchAlias {
