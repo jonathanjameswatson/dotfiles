@@ -70,6 +70,7 @@ in {
   networking.hostName = "green";
 
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
   jjw.locale.enable = true;
 
