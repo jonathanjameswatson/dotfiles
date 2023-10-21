@@ -23,6 +23,7 @@ in {
       gnome.gnome-system-monitor
       gnome.gnome-logs
       gnome.gucharmap
+      gnome.simple-scan
     ];
   };
 }

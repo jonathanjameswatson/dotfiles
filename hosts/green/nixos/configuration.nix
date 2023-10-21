@@ -80,7 +80,7 @@ in {
   users.users.jonathan = {
     isNormalUser = true;
     description = "Jonathan Watson";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "scanner" "lp"];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -154,4 +154,6 @@ in {
 
   services.devmon.enable = true;
   programs.udevil.enable = true;
+
+  jjw.printer.enable = true;
 }
