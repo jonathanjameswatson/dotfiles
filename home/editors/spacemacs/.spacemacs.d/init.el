@@ -624,8 +624,8 @@ before packages are loaded."
 
   (display-time-mode 1)
 
-  (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
-  (define-key ivy-minibuffer-map (kbd "DEL") 'ivy-backward-delete-char)
+  ;; (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
+  ;; (define-key ivy-minibuffer-map (kbd "DEL") 'ivy-backward-delete-char)
 
   (setq require-final-newline t)
 
@@ -647,25 +647,25 @@ before packages are loaded."
   (catppuccin-reload)
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
 
-  (setq evil-want-minibuffer t)
-  (defun keyboard-escape-quit-custom ()
-    (interactive)
-    (company-abort)
-    (cond ((eq last-command 'mode-exited) nil)
-	        ((region-active-p)
-	         (deactivate-mark))
-	        ((> (minibuffer-depth) 0)
-	         (abort-recursive-edit))
-	        (current-prefix-arg
-	         nil)
-	        ((> (recursion-depth) 0)
-	         (exit-recursive-edit))
-	        (buffer-quit-function
-	         (funcall buffer-quit-function))
-	        ((string-match "^ \\*" (buffer-name (current-buffer)))
-	         (bury-buffer))))
+  ;; (setq evil-want-minibuffer t)
+  ;; (defun keyboard-escape-quit-custom ()
+  ;;   (interactive)
+  ;;   (company-abort)
+  ;;   (cond ((eq last-command 'mode-exited) nil)
+	;;         ((region-active-p)
+	;;          (deactivate-mark))
+	;;         ((> (minibuffer-depth) 0)
+	;;          (abort-recursive-edit))
+	;;         (current-prefix-arg
+	;;          nil)
+	;;         ((> (recursion-depth) 0)
+	;;          (exit-recursive-edit))
+	;;         (buffer-quit-function
+	;;          (funcall buffer-quit-function))
+	;;         ((string-match "^ \\*" (buffer-name (current-buffer)))
+	;;          (bury-buffer))))
 
-  (evil-define-key 'normal global-map (kbd "<escape>") #'keyboard-escape-quit-custom)
+  ;; (evil-define-key 'normal global-map (kbd "<escape>") #'keyboard-escape-quit-custom)
   (defun transient-bind-escape-to-quit ()
     (keymap-set transient-base-map   "<escape>" #'transient-quit-one)
     (keymap-set transient-sticky-map "<escape>" #'transient-quit-seq)
