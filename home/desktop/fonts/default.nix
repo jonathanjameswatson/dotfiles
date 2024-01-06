@@ -20,7 +20,7 @@ in {
       default = [];
     };
     nerdFonts = mkOption {
-      type = types.listOf types.string;
+      type = types.listOf types.str;
       default = [];
     };
     enableEmojis = mkOption {
