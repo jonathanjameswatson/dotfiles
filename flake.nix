@@ -46,7 +46,7 @@ rec {
     };
 
     webcord-src = {
-      url = "github:SpacingBat3/WebCord/7ca8370fdc812323f8e17a69fbe6b184be7f4a9f";
+      url = "github:SpacingBat3/WebCord/4ea70d8157193741325474927adf7e9e50e9e31d";
       flake = false;
     };
   };

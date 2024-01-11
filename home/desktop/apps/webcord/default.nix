@@ -21,12 +21,12 @@ in {
     nixpkgs.overlays = [
       (_: prev: {
         webcord = prev.webcord.overrideAttrs (oldAttrs: rec {
-          name = "webcord-4.4.2";
+          name = "webcord-4.6.1";
           src = inputs.webcord-src;
           npmDeps = pkgs.fetchNpmDeps {
             inherit src;
             name = "${name}-npm-deps";
-            hash = "sha256-O3eFtgDO+2A7PygrLj6iT/rptnG+oR5tD2lhhz6Iwug=";
+            hash = "sha256-UzwLORlUeTMq3RyOHpvBrbxbwgpMBsbmfyXBhpB6pOQ="; # lib.fakeHash
           };
         });
       })
