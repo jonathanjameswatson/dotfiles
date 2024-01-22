@@ -40,6 +40,11 @@ rec {
       url = "github:nix-community/emacs-overlay/e10103d1d5e90f4c20136053ad3d4379fdcc2f33";
     };
 
+    nixgl = {
+      url = "github:nix-community/nixGL/489d6b095ab9d289fe11af0219a9ff00fe87c7c5";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     catppuccin-alacritty = {
       url = "github:catppuccin/alacritty/3c808cbb4f9c87be43ba5241bc57373c793d2f17";
       flake = false;

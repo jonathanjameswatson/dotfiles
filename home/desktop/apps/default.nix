@@ -25,6 +25,7 @@ in {
       eog.enable = true;
       firefox.enable = true;
       nautilus.enable = true;
+      nixgl.enable = true;
       vlc.enable = true;
       webcord.enable = true;
       extra.enable = true;

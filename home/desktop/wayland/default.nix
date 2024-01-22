@@ -20,6 +20,7 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       wl-clipboard
+      libsForQt5.qt5.qtwayland
     ];
 
     services.kanshi = {
