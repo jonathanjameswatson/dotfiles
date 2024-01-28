@@ -33,7 +33,7 @@ rec {
     };
 
     nixd = {
-      url = "github:jonathanjameswatson/nixd/c7cd061b0f5c76a20c5260f12a04f0ce46c982dd";
+      url = "github:jonathanjameswatson/nixd/76203129927fb251a6f02073bf3e68364f6cd387";
     };
 
     emacs-overlay = {
