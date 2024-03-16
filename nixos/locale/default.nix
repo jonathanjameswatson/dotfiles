@@ -25,7 +25,7 @@ in {
     };
     xserverKeymap = mkOption {
       type = types.str;
-      default = "gb";
+      default = "gb,us";
     };
     timeZone = mkOption {
       type = types.str;
@@ -51,7 +51,11 @@ in {
       cfg.localeString;
 
     console.keyMap = cfg.keymap;
-    services.xserver.layout = cfg.xserverKeymap;
+
+    services.xserver.xkb = {
+      layout = cfg.xserverKeymap;
+      options = "grp:menu_toggle";
+    };
 
     time = {inherit (cfg) timeZone;};
   };

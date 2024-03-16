@@ -85,6 +85,10 @@ in {
               xkb_layout = "gb";
             };
 
+            "12951:6519:ZSA_Technology_Labs_Voyager" = {
+              xkb_layout = "us";
+            };
+
             "type:keyboard" = {
               xkb_options = "caps:escape";
             };
