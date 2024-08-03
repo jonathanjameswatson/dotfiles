@@ -32,7 +32,7 @@
     services.gpg-agent = {
       enable = true;
       enableSshSupport = true;
-      pinentryFlavor = "tty";
+      pinentryPackage = pkgs.pinentry-tty;
       extraConfig = ''
         allow-emacs-pinentry
         allow-loopback-pinentry

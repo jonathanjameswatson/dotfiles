@@ -27,7 +27,7 @@ in {
       theme;
       mode = lib.jjw.catppuccin.themeMode theme;
       titleMode = lib.jjw.strings.toTitle mode;
-      gtkTheme = "Catppuccin-${titleTheme.variant}-Standard-${titleTheme.accent}-${titleMode}";
+      gtkTheme = "catppuccin-${theme.variant}-${theme.accent}-standard";
       catppuccinOverride = pkgs.catppuccin-gtk.override {
         accents = [theme.accent];
         size = "standard";
@@ -71,16 +71,11 @@ in {
 
       qt = {
         enable = true;
-        platformTheme = "gtk";
+        platformTheme.name = "gtk";
       };
 
       systemd.user.sessionVariables.GTK_THEME = gtkTheme;
       home.sessionVariables.GTK_THEME = gtkTheme;
-
-      home.activation.gtk4-fix = ''
-        mkdir -p ~/.config/gtk-4.0/
-        ln -sf ${catppuccinOverride}/share/themes/Catppuccin-*-${titleMode}/gtk-4.0/* ~/.config/gtk-4.0/
-      '';
     }
   );
 }

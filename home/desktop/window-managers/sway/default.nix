@@ -77,6 +77,8 @@ in {
         extraConfigEarly =
           lib.jjw.catppuccin.mkSwayVariables config.jjw.theme.palette;
 
+        checkConfig = false;
+
         config = rec {
           modifier = "Mod4";
 
@@ -204,7 +206,11 @@ in {
           export SDL_VIDEODRIVER=wayland
           export _JAVA_AWT_WM_NONREPARENTING=1=1
 
-          source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+          if [[ -e ${config.home.homeDirectory}/.nix-profile/etc/profile.d/hm-session-vars.sh ]]; then
+            source ${config.home.homeDirectory}/.nix-profile/etc/profile.d/hm-session-vars.sh
+          elif [[ -e /etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh ]]; then
+            source /etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh
+          fi
 
           ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
         '';

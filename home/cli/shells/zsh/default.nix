@@ -7,7 +7,7 @@
   ...
 }: {
   programs.zsh = {
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     shellAliases = config.jjw.cli.shells.aliases;
 
     oh-my-zsh = {

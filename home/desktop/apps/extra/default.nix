@@ -24,6 +24,7 @@ in {
       gnome.gnome-logs
       gnome.gucharmap
       gnome.simple-scan
+      chromium
     ];
   };
 }

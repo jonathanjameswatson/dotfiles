@@ -9,9 +9,9 @@ rec {
   };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -33,7 +33,7 @@ rec {
     };
 
     nixd = {
-      url = "github:jonathanjameswatson/nixd/76203129927fb251a6f02073bf3e68364f6cd387";
+      url = "github:nix-community/nixd/2.3.0";
     };
 
     emacs-overlay = {
@@ -46,7 +46,7 @@ rec {
     };
 
     catppuccin-alacritty = {
-      url = "github:catppuccin/alacritty/3c808cbb4f9c87be43ba5241bc57373c793d2f17";
+      url = "github:catppuccin/alacritty/343cf8d65459ac8f6449cc98dd3648bcbd7e3766";
       flake = false;
     };
 

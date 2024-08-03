@@ -1,0 +1,22 @@
+{
+    "nix.serverSettings": {
+        // settings for 'nixd' LSP
+        "nixd": {
+            "options": {
+                "enable": true,
+                "target": {
+                    // tweak arguments here
+                    "args": [],
+                    // NixOS options
+                    "installable": ".#homeConfigurations.\"jonathan@green\".options"
+
+                    // Flake-parts options
+                    // "installable": "<flakeref>#debug.options"
+
+                    // Home-manager options
+                    // "installable": "<flakeref>#homeConfigurations.<name>.options"
+                }
+            }
+        }
+  }
+}

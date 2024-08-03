@@ -17,7 +17,7 @@
       vim-nix
       i3config-vim
 
-      suda-vim
+      vim-suda
     ];
 
     extraConfig = ''

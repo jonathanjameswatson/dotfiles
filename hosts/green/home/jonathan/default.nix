@@ -16,6 +16,7 @@
 
     editors = {
       enableAll = true;
+      spacemacs.enable = lib.mkForce false;
       languageServers.enableAll = true;
     };
 
