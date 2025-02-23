@@ -168,7 +168,7 @@ in {
                     value = mkIcon attrs;
                   })
                   (
-                    lib.cartesianProductOfSets
+                    lib.cartesianProduct
                     {
                       notification = bools;
                       dnd = bools;

@@ -19,7 +19,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      gnome.nautilus
+      nautilus
     ];
 
     xdg.mimeApps.defaultApplications =

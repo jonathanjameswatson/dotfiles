@@ -21,7 +21,7 @@ in {
     services.printing.enable = true;
     services.printing.drivers = with pkgs; [gutenprint];
     services.avahi.enable = true;
-    services.avahi.nssmdns = true;
+    services.avahi.nssmdns4 = true;
     services.avahi.openFirewall = true;
     hardware.sane.enable = true;
     hardware.sane.extraBackends = [pkgs.sane-airscan];

@@ -36,7 +36,7 @@ in {
     in {
       home.packages = with pkgs; [
         catppuccinOverride
-        gnome.gnome-themes-extra
+        gnome-themes-extra
       ];
 
       gtk =

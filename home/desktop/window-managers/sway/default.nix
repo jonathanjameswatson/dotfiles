@@ -38,7 +38,7 @@ in {
         pkgs.writeShellApplication
         {
           name = "nag-graphical";
-          runtimeInputs = [pkgs.gnome3.zenity];
+          runtimeInputs = [pkgs.zenity];
           text = ''
             if zenity --question --text="$1"; then
               $2

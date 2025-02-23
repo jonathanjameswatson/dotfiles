@@ -26,31 +26,36 @@ in {
     services.kanshi = {
       enable = true;
 
-      profiles = {
-        undocked = {
-          outputs = [
-            {
-              criteria = "eDP-1";
-              status = "enable";
-            }
-          ];
-        };
-
-        docked = {
-          outputs = [
-            {
-              criteria = "eDP-1";
-              status = "disable";
-            }
-            {
-              criteria = "HDMI-A-1";
-              status = "enable";
-              mode = "2560x1440";
-              scale = 1.;
-            }
-          ];
-        };
-      };
+      settings = [
+        {
+          profile = {
+            name = "undocked";
+            outputs = [
+              {
+                criteria = "eDP-1";
+                status = "enable";
+              }
+            ];
+          };
+        }
+        {
+          profile = {
+            name = "docked";
+            outputs = [
+              {
+                criteria = "eDP-1";
+                status = "disable";
+              }
+              {
+                criteria = "HDMI-A-1";
+                status = "enable";
+                mode = "2560x1440";
+                scale = 1.0;
+              }
+            ];
+          };
+        }
+      ];
     };
 
     systemd.user.services.wl-clip-persist = {

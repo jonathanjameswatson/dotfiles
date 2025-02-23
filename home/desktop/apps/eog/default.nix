@@ -19,7 +19,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      gnome.eog
+      eog
     ];
 
     xdg.mimeApps.defaultApplications =

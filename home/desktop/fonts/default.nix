@@ -50,7 +50,7 @@ in {
         ]
         ++ lib.optionals cfg.enableNoto [
           noto-fonts
-          noto-fonts-cjk
+          noto-fonts-cjk-sans
         ]
         ++ lib.optionals cfg.enableLiberation [
           liberation_ttf

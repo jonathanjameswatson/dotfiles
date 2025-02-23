@@ -41,11 +41,11 @@ in {
       jjw.cli.shells = {
         aliases = lib.mkMerge [
           (lib.mkIf cfg.enableNixSwitchAlias {
-            nix-switch = "sudo nixos-rebuild switch --flake ~/dotfiles --update-input jjw-pkgs";
+            nix-switch = "nix flake update jjw-pkgs && sudo nixos-rebuild switch --flake ~/dotfiles";
           })
 
           (lib.mkIf cfg.enableHomeSwitchAlias {
-            home-switch = "home-manager switch --flake ~/dotfiles#\"$(whoami)@$(hostname)\" --update-input jjw-pkgs";
+            home-switch = "nix flake update jjw-pkgs && home-manager switch --flake ~/dotfiles#\"$(whoami)@$(hostname)\"";
           })
         ];
       };

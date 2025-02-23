@@ -32,6 +32,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      alejandra
+    ];
+
     programs.vscode = {
       enable = true;
       package = package.fhs;

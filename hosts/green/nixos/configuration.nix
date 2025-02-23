@@ -104,12 +104,6 @@ in {
     pam.services.swaylock = {};
   };
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [

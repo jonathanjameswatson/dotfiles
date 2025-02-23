@@ -19,11 +19,11 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      gnome.baobab
-      gnome.gnome-system-monitor
-      gnome.gnome-logs
-      gnome.gucharmap
-      gnome.simple-scan
+      baobab
+      gnome-system-monitor
+      gnome-logs
+      gucharmap
+      simple-scan
       chromium
     ];
   };
