@@ -105,6 +105,8 @@ in {
             };
           };
 
+          defaultWorkspace = "1";
+
           terminal = cfg.terminalCommand;
           menu = cfg.launcherCommand;
           bars = lib.mkIf config.jjw.desktop.bars.waybar.enable [
